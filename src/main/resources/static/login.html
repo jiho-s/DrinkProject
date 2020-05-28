@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>우주라이크 로그인</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <form action="#" class="login-form">
+        <h1>로그인</h1>
+        
+        <div class="txtb">
+            <input type="text">
+            <span data-placeholder="아이디 / ID"></span>
+        </div>
+        
+        <div class="txtb">
+            <input type="password">
+            <span data-placeholder="비밀번호 / Password"></span>
+        </div>
+        
+        <input type="submit" class="logbtn" onclick="alert('준비중입니다.'); " value="로그인">
+        
+        <div class="bottom-text">
+            아직 회원이 아니신가요? <a href="#" class="join" onclick="alert('준비중입니다.'); ">회원가입</a>
+        </div>
+        
+        <a href="#" class="social-logbtn naver" onclick="alert('준비중입니다.'); ">네이버 아이디로 로그인</a>
+        <a href="#" class="social-logbtn google" onclick="alert('준비중입니다.'); ">구글 아이디로 로그인</a>
+        <a href="#" class="social-logbtn kakao" onclick="alert('준비중입니다.');">카카오 아이디로 로그인</a>
+        
+    </form>
+    
+    <script type="text/javascript">
+        $(".txtb input").on("focus",function(){
+            $(this).addClass("focus");
+        });
+        
+        $(".txtb input").on("blur",function(){
+            if($(this).val() == "")
+            $(this).removeClass("focus");
+        });
+    </script>
+</body>
+</html>
