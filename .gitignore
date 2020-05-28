@@ -1,2 +1,6 @@
 .mvn
 .idea
+/target
+.project
+target/*
+*.iml
