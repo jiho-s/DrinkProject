@@ -27,7 +27,7 @@ public class User extends BaseEntity {
     @Embedded
     private UserInfo userInfo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Relationship> relationships;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

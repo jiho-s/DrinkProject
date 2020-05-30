@@ -20,11 +20,11 @@ import java.util.*;
 @Entity
 public class Event extends BaseEntity {
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "event")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     @NotEmpty
     private Set<UserEvent> userEvents;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "event")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     @NotEmpty
     private Set<EventItem> eventItems;
 
