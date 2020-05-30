@@ -25,5 +25,4 @@ public class Item extends BaseEntity {
     @NotEmpty
     private CategoryofItem categoryofItem;
 
-
 }

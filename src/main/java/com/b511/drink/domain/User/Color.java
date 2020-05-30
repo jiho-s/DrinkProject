@@ -1,5 +1,5 @@
 package com.b511.drink.domain.User;
 
 public enum Color {
-    red, blue, yellow, green, pupple
+    red, blue, yellow, green, purple
 }

@@ -1,6 +1,7 @@
 package com.b511.drink.domain.User;
 
 import com.b511.drink.domain.BaseEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,8 +24,17 @@ public class UserInfo {
     private Gender gender;
 
     @NotEmpty
+    private Double height;
+
+    @NotEmpty
     private Double weight;
 
-
+//    @Builder
+//    public UserInfo(@NotEmpty LocalDate birthDate, @NotEmpty Gender gender, @NotEmpty Double height,@NotEmpty Double weight) {
+//        this.birthDate = birthDate;
+//        this.gender = gender;
+//        this.height = height;
+//        this.weight = weight;
+//    }
 
 }

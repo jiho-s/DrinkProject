@@ -29,6 +29,4 @@ public class EventItem extends BaseEntity {
     @NotEmpty
     private Double volume;
 
-    
-
 }

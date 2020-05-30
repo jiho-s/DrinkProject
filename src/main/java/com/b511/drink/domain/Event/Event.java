@@ -44,8 +44,6 @@ public class Event extends BaseEntity {
 //        this.totalAlcoholByVolume = totalAlcoholByVolume;
 //    }
 //
-//
-//
 //    protected Set<UserEvent> getUserEventInternal() {
 //        if (this.userEvents == null) {
 //            this.userEvents = new HashSet<>();
@@ -59,7 +57,7 @@ public class Event extends BaseEntity {
 //
 //    public List<UserEvent> getUserEvents() {
 //        List<UserEvent> sortedUserEvents = new ArrayList<>(getUserEventInternal());
-//        PropertyComparator.sort(sortedUserEvents, new MutableSortDefinition("name", true,true));
+//        PropertyComparator.sort(sortedUserEvents, new MutableSortDefinition("name", true, true));
 //        return Collections.unmodifiableList(sortedUserEvents);
 //    }
 //
@@ -71,4 +69,5 @@ public class Event extends BaseEntity {
 //    }
 //
 //    public UserEvent getUserEvent()
+
 }
