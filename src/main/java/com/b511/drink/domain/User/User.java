@@ -27,8 +27,11 @@ public class User extends BaseEntity {
     @Embedded
     private UserInfo userInfo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Relationship> relationships;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Relationship relationship;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private Set<UserEvent> userEvents;

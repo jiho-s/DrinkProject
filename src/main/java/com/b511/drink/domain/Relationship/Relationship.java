@@ -5,11 +5,9 @@ import com.b511.drink.domain.User.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -18,11 +16,11 @@ public class Relationship extends BaseEntity {
 
     @ManyToOne
     @NotEmpty
-    private User user1;
+    private User user;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "relationship")
     @NotEmpty
-    private User user2;
+    private Set<User> users;
 
     @Enumerated(value = EnumType.STRING)
     @NotEmpty
