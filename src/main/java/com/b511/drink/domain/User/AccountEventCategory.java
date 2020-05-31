@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
-public class UserEventCategory extends BaseEntity {
+public class AccountEventCategory extends BaseEntity {
 
     @NotEmpty
     private String name;
@@ -24,6 +24,6 @@ public class UserEventCategory extends BaseEntity {
     private Color color;
 
     @OneToMany(mappedBy = "category")
-    private Set<UserEvent> userEvents;
+    private Set<AccountEvent> accountEvents;
 
 }

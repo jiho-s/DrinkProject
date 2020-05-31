@@ -1,9 +1,7 @@
 package com.b511.drink.domain.User;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.Event.Event;
 import com.b511.drink.domain.Relationship.Relationship;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +12,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BaseEntity {
+public class Account extends BaseEntity {
     @NotEmpty
     private String name;
 
@@ -27,14 +25,14 @@ public class User extends BaseEntity {
     @Embedded
     private UserInfo userInfo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private Set<Relationship> relationships;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Relationship relationship;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<UserEvent> userEvents;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")
+    private Set<AccountEvent> accountEvents;
 
 //    @Builder
 //    public User(@NotEmpty String name, @NotEmpty String email, @NotEmpty String picture) {

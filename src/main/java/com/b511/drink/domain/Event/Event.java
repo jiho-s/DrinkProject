@@ -1,17 +1,13 @@
 package com.b511.drink.domain.Event;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.User.UserEvent;
-import lombok.Builder;
+import com.b511.drink.domain.User.AccountEvent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -22,7 +18,7 @@ public class Event extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     @NotEmpty
-    private Set<UserEvent> userEvents;
+    private Set<AccountEvent> accountEvents;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     @NotEmpty

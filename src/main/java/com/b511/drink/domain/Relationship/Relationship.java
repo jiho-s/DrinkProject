@@ -1,7 +1,7 @@
 package com.b511.drink.domain.Relationship;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.User.User;
+import com.b511.drink.domain.User.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,11 +16,11 @@ public class Relationship extends BaseEntity {
 
     @ManyToOne
     @NotEmpty
-    private User user;
+    private Account account;
 
     @OneToMany(mappedBy = "relationship")
     @NotEmpty
-    private Set<User> users;
+    private Set<Account> accounts;
 
     @Enumerated(value = EnumType.STRING)
     @NotEmpty
