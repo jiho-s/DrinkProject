@@ -1,7 +1,5 @@
-package com.b511.drink.domain.User;
+package com.b511.drink.domain.Account;
 
-import com.b511.drink.domain.BaseEntity;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Embeddable
-public class UserInfo {
+public class AccountInfo {
 
     @NotEmpty
     @DateTimeFormat(pattern = "yyyy-MM-dd")

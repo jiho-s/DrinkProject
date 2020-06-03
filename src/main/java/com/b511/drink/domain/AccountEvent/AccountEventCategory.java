@@ -1,4 +1,4 @@
-package com.b511.drink.domain.User;
+package com.b511.drink.domain.AccountEvent;
 
 import com.b511.drink.domain.BaseEntity;
 import lombok.Getter;

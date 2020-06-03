@@ -1,7 +1,7 @@
 package com.b511.drink.domain.Event;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.User.AccountEvent;
+import com.b511.drink.domain.AccountEvent.AccountEvent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

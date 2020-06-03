@@ -1,7 +1,7 @@
 package com.b511.drink.domain.Relationship;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.User.Account;
+import com.b511.drink.domain.Account.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

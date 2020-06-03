@@ -1,5 +1,6 @@
-package com.b511.drink.domain.User;
+package com.b511.drink.domain.Account;
 
+import com.b511.drink.domain.AccountEvent.AccountEvent;
 import com.b511.drink.domain.BaseEntity;
 import com.b511.drink.domain.Relationship.Relationship;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class Account extends BaseEntity {
     private String picture;
 
     @Embedded
-    private UserInfo userInfo;
+    private AccountInfo accountInfo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private Set<Relationship> relationships;

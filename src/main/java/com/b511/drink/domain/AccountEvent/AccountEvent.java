@@ -1,5 +1,6 @@
-package com.b511.drink.domain.User;
+package com.b511.drink.domain.AccountEvent;
 
+import com.b511.drink.domain.Account.Account;
 import com.b511.drink.domain.BaseEntity;
 import com.b511.drink.domain.Event.Event;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class AccountEvent extends BaseEntity {
     private Account account;
 
     @NotEmpty
-    private Double userAlcoholByVolume;
+    private Double accountAlcoholByVolume;
 
     private String name;
 
