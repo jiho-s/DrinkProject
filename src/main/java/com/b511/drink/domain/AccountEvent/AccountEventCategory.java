@@ -1,8 +1,10 @@
 package com.b511.drink.domain.AccountEvent;
 
 import com.b511.drink.domain.BaseEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class AccountEventCategory extends BaseEntity {
@@ -26,4 +29,9 @@ public class AccountEventCategory extends BaseEntity {
     @OneToMany(mappedBy = "category")
     private Set<AccountEvent> accountEvents;
 
+    @Builder
+    public AccountEventCategory(@NotEmpty String name, @NotEmpty Color color) {
+        this.name = name;
+        this.color = color;
+    }
 }
