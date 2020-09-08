@@ -1,5 +1,47 @@
 {{>layout/header}}
 
-<h1>hi</h1>
+<div id="wrapper">
+    <header id="header" class="alt">
+        <h1>우주라이크</h1>
+        <p>{{name}} 님, 환영합니다.</p>
+        <ul class="actions fit">
+            <li><a href="/" class="button" onclick="alert('준비중입니다.')">로그아웃</a></li>
+<!--            <li><a class="button" onclick="alert('준비중입니다.')">iOS에서 시작</a></li>-->
+        </ul>
+    </header>
+
+    <div id="main">
+        <section id="content" class="main">
+            <div class="col-6 col-12-medium">
+                <h2 align="center">아래 버튼 중 하나를 누르세요</h2> <br> <br>
+
+                <ul class="actions stacked">
+                    <li><a href="/event" class="button primary fit">{{name}} 님의 주량 추가하기</a></li>
+                    <li><a href="/profile" class="button primary fit">{{name}} 님의 주량 확인하기</a></li>
+                    <li><a href="/friend" class="button primary fit">친구들과 주량 비교하기</a></li>
+                    <li><a href="/setting" class="button fit">내 정보 변경하기</a></li>
+                </ul>
+
+                <br> <br>
+
+            </div>
+        </section>
+    </div>
+
+    <footer id="footer">
+        <section>
+            <h2>우주라이크</h2>
+        </section>
+        <section>
+            <h2>팀 B511</h2>
+            <dl class="alt">
+                <dt>Email1</dt>
+                <dd><a href="#">click_syk@naver.com</a></dd>
+                <dt>Email2</dt>
+                <dd><a href="#">tlswlgh120@naver.com</a></dd>
+            </dl>
+        </section>
+    </footer>
+</div>
 
 {{>layout/footer}}
