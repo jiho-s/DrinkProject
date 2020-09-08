@@ -26,7 +26,7 @@ public class EventItem extends BaseEntity {
 
     @NotEmpty
     @Max(100)
-    private Double  alcoholByVolume;
+    private Double alcoholByVolume;
 
     @NotEmpty
     private Double volume;

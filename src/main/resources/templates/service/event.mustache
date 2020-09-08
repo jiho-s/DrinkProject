@@ -1,0 +1,82 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    <header id="header" class="alt">
+        <h1>우주라이크</h1>
+        <p>{{name}} 님, 환영합니다.</p>
+        <ul class="actions fit">
+            <li><a href="/" class="button" onclick="alert('준비중입니다.')">로그아웃</a></li>
+        </ul>
+    </header>
+
+    <div id="main">
+        <section id="content" class="main">
+            <h2>{{name}} 님의 주량 추가하기</h2>
+<!-- form -->
+            <form method="post" action="#">
+                <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                        <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+                    </div>
+                    <div class="col-12">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">마신 술의 종류를 고르세요.</option>
+                            {{#itemList}}
+                            <option value={{id}}>{{itemName}}</option>
+                            {{/itemList}}
+                        </select>
+                    </div>
+                    <div class="col-4 col-12-small">
+                        <input type="radio" id="demo-priority-low" name="demo-priority" checked>
+                        <label for="demo-priority-low">Low</label>
+                    </div>
+                    <div class="col-4 col-12-small">
+                        <input type="radio" id="demo-priority-normal" name="demo-priority">
+                        <label for="demo-priority-normal">Normal</label>
+                    </div>
+                    <div class="col-4 col-12-small">
+                        <input type="radio" id="demo-priority-high" name="demo-priority">
+                        <label for="demo-priority-high">High</label>
+                    </div>
+                    <div class="col-6 col-12-small">
+                        <input type="checkbox" id="demo-copy" name="demo-copy">
+                        <label for="demo-copy">Email me a copy</label>
+                    </div>
+                    <div class="col-6 col-12-small">
+                        <input type="checkbox" id="demo-human" name="demo-human" checked>
+                        <label for="demo-human">Not a robot</label>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Send Message" class="primary" /></li>
+                            <li><input type="reset" value="Reset" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <footer id="footer">
+        <section>
+            <h2>우주라이크</h2>
+        </section>
+        <section>
+            <h2>팀 B511</h2>
+            <dl class="alt">
+                <dt>Email1</dt>
+                <dd><a href="#">click_syk@naver.com</a></dd>
+                <dt>Email2</dt>
+                <dd><a href="#">tlswlgh120@naver.com</a></dd>
+            </dl>
+        </section>
+    </footer>
+</div>
+
+{{>layout/footer}}
