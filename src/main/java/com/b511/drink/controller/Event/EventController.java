@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class EventController {
 
-    @GetMapping("/event")
+    @GetMapping("/service/event")
     public String new_event(Model model){
         model.addAttribute("name", "glory");
         model.addAttribute("itemList", ItemListDto.getItemList());

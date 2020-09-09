@@ -9,17 +9,16 @@
         </ul>
     </header>
 
+    <div class="datepicker" id="drinkdate"> </div>
+
     <div id="main">
         <section id="content" class="main">
             <h2>{{name}} 님의 주량 추가하기</h2>
 <!-- form -->
             <form method="post" action="#">
                 <div class="row gtr-uniform">
-                    <div class="col-6 col-12-xsmall">
-                        <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-                    </div>
-                    <div class="col-6 col-12-xsmall">
-                        <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+                    <div class="col-12">
+                        마신 날짜를 입력하세요 : <input type="date" name="drinkdate" id="drinkdate" required/>
                     </div>
                     <div class="col-12">
                         <select name="demo-category" id="demo-category">
@@ -29,33 +28,20 @@
                             {{/itemList}}
                         </select>
                     </div>
-                    <div class="col-4 col-12-small">
-                        <input type="radio" id="demo-priority-low" name="demo-priority" checked>
-                        <label for="demo-priority-low">Low</label>
-                    </div>
-                    <div class="col-4 col-12-small">
-                        <input type="radio" id="demo-priority-normal" name="demo-priority">
-                        <label for="demo-priority-normal">Normal</label>
-                    </div>
-                    <div class="col-4 col-12-small">
-                        <input type="radio" id="demo-priority-high" name="demo-priority">
-                        <label for="demo-priority-high">High</label>
+                    <div class="col-12  col-12-xsmall">
+                        <input type="text" name="cup" id="cup" value="" placeholder="몇 잔 마셨나요? 숫자로만 입력해주세요." required/>
                     </div>
                     <div class="col-6 col-12-small">
                         <input type="checkbox" id="demo-copy" name="demo-copy">
-                        <label for="demo-copy">Email me a copy</label>
-                    </div>
-                    <div class="col-6 col-12-small">
-                        <input type="checkbox" id="demo-human" name="demo-human" checked>
-                        <label for="demo-human">Not a robot</label>
+                        <label for="demo-copy">필름이 끊겼습니다.</label>
                     </div>
                     <div class="col-12">
-                        <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                        <textarea name="demo-message" id="demo-message" placeholder="특이사항 적기" rows="3"></textarea>
                     </div>
                     <div class="col-12">
                         <ul class="actions">
-                            <li><input type="submit" value="Send Message" class="primary" /></li>
-                            <li><input type="reset" value="Reset" /></li>
+                            <li><input type="submit" value="주량 추가하기" class="primary" /></li>
+                            <li><input type="reset" value="입력내용 초기화" /></li>
                         </ul>
                     </div>
                 </div>
@@ -78,5 +64,10 @@
         </section>
     </footer>
 </div>
+
+<script>
+    document.getElementById('drinkdate').value = new Date().toISOString().substring(0, 10);
+    document.getElementById('drinkdate').max = new Date().toISOString().substring(0, 10);
+</script>
 
 {{>layout/footer}}
