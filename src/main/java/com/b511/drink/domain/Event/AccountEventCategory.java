@@ -1,4 +1,4 @@
-package com.b511.drink.domain.AccountEvent;
+package com.b511.drink.domain.Event;
 
 import com.b511.drink.domain.BaseEntity;
 import lombok.Builder;
@@ -27,7 +27,7 @@ public class AccountEventCategory extends BaseEntity {
     private Color color;
 
     @OneToMany(mappedBy = "category")
-    private Set<AccountEvent> accountEvents;
+    private Set<Event> events;
 
     @Builder
     public AccountEventCategory(@NotEmpty String name, @NotEmpty Color color) {

@@ -25,6 +25,6 @@ public class Item extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     @NotEmpty
-    private CategoryofItem categoryofItem;
+    private CategoryOfItem categoryofItem;
 
 }

@@ -20,37 +20,20 @@ public class Relationship extends BaseEntity {
 
     @ManyToOne
     @NotEmpty
-    @Column(unique = true)
-    private Account account;
+    private Account from;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "accountRelationship")
-    private Set<Account> accounts;
+    @ManyToOne
+    @NotEmpty
+    private Account to;
 
     @Enumerated(value = EnumType.STRING)
     @NotEmpty
     private RelationshipStatus status;
 
     @Builder
-    public Relationship(@NotEmpty Account account, @NotEmpty RelationshipStatus status) {
-        this.account = account;
-        this.status = status;
-    }
-
-    public Set<Account> getAccounts() {
-        if (this.accounts == null) {
-            this.accounts = new HashSet<>();
-        }
-        return this.accounts;
-    }
-
-    public void addAccount(Account account) {
-        if (account.isNew()) {
-            getAccounts().add(account);
-        }
-        account.addRelationship(new RelationshipBuilder()
-                .account(account)
-                .status(RelationshipStatus.Pending)
-                .build()
-        );
+    public Relationship(@NotEmpty Account from, @NotEmpty Account to, @NotEmpty RelationshipStatus status) {
+        this.from = from;
+        this.to = to;
+        this.status = RelationshipStatus.Pending;
     }
 }
