@@ -1,8 +1,8 @@
-package com.b511.drink.domain.Event;
+package com.b511.drink.domain.events;
 
-import com.b511.drink.domain.Account.Account;
+import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.Item.Item;
+import com.b511.drink.domain.items.Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

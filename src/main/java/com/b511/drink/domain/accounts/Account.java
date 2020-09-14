@@ -1,9 +1,9 @@
-package com.b511.drink.domain.Account;
+package com.b511.drink.domain.accounts;
 
-import com.b511.drink.domain.Event.Event;
+import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.Relationship.Relationship;
-import com.b511.drink.domain.Relationship.RelationshipStatus;
+import com.b511.drink.domain.relationships.Relationship;
+import com.b511.drink.domain.relationships.RelationshipStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

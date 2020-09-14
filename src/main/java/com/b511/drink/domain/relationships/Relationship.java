@@ -1,7 +1,7 @@
-package com.b511.drink.domain.Relationship;
+package com.b511.drink.domain.relationships;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.Account.Account;
+import com.b511.drink.domain.accounts.Account;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter

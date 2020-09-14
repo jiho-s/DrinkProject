@@ -1,4 +1,4 @@
-package com.b511.drink.domain.Item;
+package com.b511.drink.domain.items;
 
 import com.b511.drink.domain.BaseEntity;
 import lombok.Getter;
