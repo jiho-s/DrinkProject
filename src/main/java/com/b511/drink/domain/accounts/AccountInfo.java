@@ -1,4 +1,4 @@
-package com.b511.drink.domain.Account;
+package com.b511.drink.domain.accounts;
 
 import lombok.Builder;
 import lombok.Getter;

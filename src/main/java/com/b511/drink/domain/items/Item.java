@@ -1,13 +1,13 @@
-package com.b511.drink.domain.Event;
+package com.b511.drink.domain.items;
 
 import com.b511.drink.domain.BaseEntity;
-import com.b511.drink.domain.Item.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,20 +15,16 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @NoArgsConstructor
 @Entity
-public class EventItem extends BaseEntity {
-
-    @ManyToOne
+public class Item extends BaseEntity {
     @NotEmpty
-    private Event event;
-
-    @ManyToOne
-    private Item item;
+    private String name;
 
     @NotEmpty
     @Max(100)
-    private Double alcoholByVolume;
+    private double  alcoholByVolume;
 
+    @Enumerated(value = EnumType.STRING)
     @NotEmpty
-    private Double volume;
+    private CategoryOfItem categoryofItem;
 
 }

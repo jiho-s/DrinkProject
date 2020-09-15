@@ -1,6 +1,6 @@
 package com.b511.drink.dto.event;
 
-import com.b511.drink.domain.Item.CategoryofItem;
+import com.b511.drink.domain.items.CategoryOfItem;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -23,7 +23,7 @@ public class ItemListDto {
     }
 
     public static List<ItemListDto> getItemList() {
-        List<String> itemList = Stream.of(CategoryofItem.values())
+        List<String> itemList = Stream.of(CategoryOfItem.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
 
