@@ -1,4 +1,4 @@
-package com.b511.drink.service;
+package com.b511.drink.service.relationships;
 
 import com.b511.drink.domain.relationships.RelationshipRepository;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.b511.drink.service;
+package com.b511.drink.service.accounts;
 
 import com.b511.drink.domain.accounts.AccountRepository;
 import org.springframework.stereotype.Service;
