@@ -26,7 +26,6 @@ public class Account extends BaseEntity {
     @NotEmpty
     private String email;
 
-    @NotEmpty
     private String picture;
 
     @Embedded
@@ -42,7 +41,7 @@ public class Account extends BaseEntity {
     private Set<Event> events;
 
     @Builder
-    public Account(@NotEmpty String name, @NotEmpty String email, @NotEmpty String picture, AccountInfo accountInfo) {
+    public Account(@NotEmpty String name, @NotEmpty String email, String picture, AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
         this.picture = picture;

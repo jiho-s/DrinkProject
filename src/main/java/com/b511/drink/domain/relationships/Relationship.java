@@ -16,11 +16,11 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class Relationship extends BaseEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotEmpty
     private Account from;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotEmpty
     private Account to;
 
