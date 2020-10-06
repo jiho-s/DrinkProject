@@ -130,7 +130,4 @@ public class Account extends BaseEntity {
         return null;
     }
 
-
-
-
 }
