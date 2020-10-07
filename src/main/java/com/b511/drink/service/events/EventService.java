@@ -1,20 +1,31 @@
 package com.b511.drink.service.events;
 
+import com.b511.drink.domain.accounts.Account;
+import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.events.EventRepository;
+import com.b511.drink.dto.accounts.SessionUser;
 import com.b511.drink.dto.events.EventSaveRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+import java.util.UUID;
+
+@RequiredArgsConstructor
 @Service
 public class EventService {
-    private EventRepository eventRepository;
 
-    public EventService(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
+    private final AccountRepository accountRepository;
+    private final EventRepository eventRepository;
 
     @Transactional
-    public Long save(EventSaveRequestDto requestDto) {
-        return eventRepository.save(requestDto.toEntity().getId());
+    public UUID save(EventSaveRequestDto requestDto, SessionUser user) {
+        UUID uid = user.getId();
+        Account account = accountRepository.findById(uid)
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 계정입니다. id=" + uid));
+
+        return eventRepository.save(requestDto.toEntity(account)).getId();
     }
+
 }

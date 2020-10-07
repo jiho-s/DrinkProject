@@ -15,13 +15,13 @@
         <section id="content" class="main">
             <h2>{{name}} 님의 주량 추가하기</h2>
 <!-- form -->
-            <form method="post" action="#">
+            <form>
                 <div class="row gtr-uniform">
                     <div class="col-12">
-                        마신 날짜를 입력하세요 : <input type="date" name="drinkdate" id="drinkDate" required/>
+                        <label for="drinkDate">마신 날짜를 입력하세요 </label><input class="form-control" type="text" name="drinkDate" id="drinkDate" placeholder="형식 : yyyy-DD-mm" required/>
                     </div>
                     <div class="col-12">
-                        <select name="drinkType" id="drinkType">
+                        <select class="form-control" name="drinkType" id="drinkType">
                             <option value="">마신 술의 종류를 고르세요.</option>
                             {{#itemList}}
                             <option value={{id}}>{{itemName}}</option>
@@ -29,14 +29,14 @@
                         </select>
                     </div>
                     <div class="col-12  col-12-xsmall">
-                        <input type="text" name="cup" id="cup" value="" placeholder="몇 잔 마셨나요? 숫자로만 입력해주세요." required/>
+                        <input class="form-control" type="text" name="cup" id="cup" value="" placeholder="몇 잔 마셨나요? 숫자로만 입력해주세요." required/>
                     </div>
                     <div class="col-6 col-12-small">
-                        <input type="checkbox" id="film" name="film">
+                        <input class="form-control" type="checkbox" id="film" name="film">
                         <label for="film">필름이 끊겼습니다.</label>
                     </div>
                     <div class="col-12">
-                        <textarea name="memo" id="memo" placeholder="특이사항 적기" rows="3"></textarea>
+                        <textarea class="form-control" name="memo" id="memo" placeholder="특이사항 적기" rows="3"></textarea>
                     </div>
                     <div class="col-12">
                         <ul class="actions">

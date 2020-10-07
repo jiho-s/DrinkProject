@@ -32,7 +32,7 @@ public class ItemListDto {
 
         for(String target : itemList){
             itemListDtos.add(new ItemListDto(num, target));
-            System.out.println(target);
+//            System.out.println(target);
             num++;
         }
 
