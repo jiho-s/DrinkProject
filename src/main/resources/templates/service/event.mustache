@@ -18,7 +18,7 @@
             <form>
                 <div class="row gtr-uniform">
                     <div class="col-12">
-                        <label for="drinkDate">마신 날짜를 입력하세요 </label><input class="form-control" type="text" name="drinkDate" id="drinkDate" placeholder="형식 : yyyy-DD-mm" required/>
+                        <input class="form-control" type="text" name="drinkDate" id="drinkDate" placeholder="마신 날짜를 입력하세요. (형식 : yyyy-DD-mm)" required/>
                     </div>
                     <div class="col-12">
                         <select class="form-control" name="drinkType" id="drinkType">
@@ -31,16 +31,15 @@
                     <div class="col-12  col-12-xsmall">
                         <input class="form-control" type="text" name="cup" id="cup" value="" placeholder="몇 잔 마셨나요? 숫자로만 입력해주세요." required/>
                     </div>
-                    <div class="col-6 col-12-small">
-                        <input class="form-control" type="checkbox" id="film" name="film">
-                        <label for="film">필름이 끊겼습니다.</label>
+                    <div class="col-12 col-12-xsmall">
+                        <input class="form-control" type="text" id="film" name="film" placeholder="필름이 끊겼나요? 끊겼다면 Y, 끊기지 않았다면 N">
                     </div>
                     <div class="col-12">
                         <textarea class="form-control" name="memo" id="memo" placeholder="특이사항 적기" rows="3"></textarea>
                     </div>
                     <div class="col-12">
                         <ul class="actions">
-                            <li><input type="submit" value="주량 추가하기" class="primary" id="btn-event-save"/></li>
+                            <li><input type="button" value="주량 추가하기" class="primary" id="btn-event-save"/></li>
                             <li><input type="reset" value="입력내용 초기화" /></li>
                         </ul>
                     </div>

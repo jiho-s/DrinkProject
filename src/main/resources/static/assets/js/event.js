@@ -6,6 +6,7 @@ var index = {
         });
     },
     save : function () {
+
         var data = {
             drinkDate: $('#drinkDate').val(),
             drinkType: $('#drinkType').val(),
