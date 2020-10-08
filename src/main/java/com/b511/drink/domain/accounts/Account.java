@@ -30,6 +30,10 @@ public class Account extends BaseEntity {
     // @NotEmpty
     private String picture;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Embedded
     private AccountInfo accountInfo;
 
@@ -43,11 +47,20 @@ public class Account extends BaseEntity {
     private Set<Event> events;
 
     @Builder
-    public Account(@NotEmpty String name, @NotEmpty String email, @NotEmpty String picture, AccountInfo accountInfo) {
+    public Account(@NotEmpty String name,
+                   @NotEmpty String email,
+                   String picture,
+                   Role role,
+                   AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
         this.picture = picture;
+        this.role = role;
         this.accountInfo = accountInfo;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 
     public Set<Relationship> getFromRelationships() {
