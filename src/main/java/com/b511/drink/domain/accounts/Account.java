@@ -20,6 +20,7 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 public class Account extends BaseEntity {
+
     @NotEmpty
     private String name;
 
@@ -28,6 +29,10 @@ public class Account extends BaseEntity {
 
     // @NotEmpty
     private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Embedded
     private AccountInfo accountInfo;
@@ -42,11 +47,20 @@ public class Account extends BaseEntity {
     private Set<Event> events;
 
     @Builder
-    public Account(@NotEmpty String name, @NotEmpty String email, @NotEmpty String picture, AccountInfo accountInfo) {
+    public Account(@NotEmpty String name,
+                   @NotEmpty String email,
+                   String picture,
+                   Role role,
+                   AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
         this.picture = picture;
+        this.role = role;
         this.accountInfo = accountInfo;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 
     public Set<Relationship> getFromRelationships() {
@@ -64,7 +78,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getFromRelationship(UUID uuid) {
-        for (Relationship relationship : getFromRelationships()){
+        for (Relationship relationship : getFromRelationships()) {
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
@@ -89,7 +103,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getToRelationship(UUID uuid) {
-        for (Relationship relationship : getToRelationships()){
+        for (Relationship relationship : getToRelationships()) {
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
