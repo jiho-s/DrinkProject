@@ -34,4 +34,5 @@ public class Relationship extends BaseEntity {
         this.to = to;
         this.status = RelationshipStatus.Pending;
     }
+
 }

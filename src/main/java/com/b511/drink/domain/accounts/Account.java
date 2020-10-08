@@ -20,13 +20,14 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 public class Account extends BaseEntity {
+
     @NotEmpty
     private String name;
 
     @NotEmpty
     private String email;
 
-    @NotEmpty
+    // @NotEmpty
     private String picture;
 
     @Embedded
@@ -64,7 +65,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getFromRelationship(UUID uuid) {
-        for (Relationship relationship : getFromRelationships()){
+        for (Relationship relationship : getFromRelationships()) {
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
@@ -89,7 +90,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getToRelationship(UUID uuid) {
-        for (Relationship relationship : getToRelationships()){
+        for (Relationship relationship : getToRelationships()) {
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
@@ -129,8 +130,5 @@ public class Account extends BaseEntity {
         }
         return null;
     }
-
-
-
 
 }
