@@ -5,12 +5,11 @@ import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.events.EventRepository;
 import com.b511.drink.dto.accounts.SessionUser;
-import com.b511.drink.dto.events.EventSaveRequestDto;
+import com.b511.drink.dto.events.EventCreateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -21,7 +20,7 @@ public class EventService {
     private final EventRepository eventRepository;
 
     @Transactional
-    public UUID save(EventSaveRequestDto requestDto, SessionUser user) {
+    public UUID save(EventCreateRequestDto requestDto, SessionUser user) {
         UUID uid = user.getId();
         Account account = accountRepository.findById(uid)
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 계정입니다. id=" + uid));

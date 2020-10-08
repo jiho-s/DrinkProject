@@ -1,0 +1,43 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    <header id="header" class="alt">
+        <h1>우주라이크</h1>
+    </header>
+
+    <div id="main">
+        <section id="content" class="main">
+            <div class="col-6 col-12-medium">
+                <h1 align="center">에러 페이지 : status code {{errorCode}}</h1>
+                <div class="box alt">
+                    <div class="row gtr-uniform">
+                        <div class="col-12">
+                            <span class="image fit">
+                                <img src="/images/errorpage.jpg" alt="" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" value="뒤로 돌아가기" class="button fit" onclick="history.go(-1)">
+            </div>
+        </section>
+    </div>
+
+    <footer id="footer">
+        <section>
+            <h2>우주라이크</h2>
+        </section>
+        <section>
+            <h2>팀 B511</h2>
+            <dl class="alt">
+                <dt>Email1</dt>
+                <dd><a href="#">click_syk@naver.com</a></dd>
+                <dt>Email2</dt>
+                <dd><a href="#">tlswlgh120@naver.com</a></dd>
+            </dl>
+        </section>
+    </footer>
+
+</div>
+
+{{>layout/footer}}
