@@ -18,24 +18,31 @@
             <form>
                 <div class="row gtr-uniform">
                     <div class="col-12">
-                        <input class="form-control" type="text" name="drinkDate" id="drinkDate" placeholder="마신 날짜를 입력하세요. (형식 : yyyy-DD-mm)" required/>
+                        <label for="drinkDate">술을 마신 날짜를 입력하세요.</label>
+                        <input class="form-control" type="text" name="drinkDate" id="drinkDate" placeholder="형식 : yyyy-DD-mm" required/>
                     </div>
                     <div class="col-12">
+                        <label for="drinkType">마신 술의 종류를 고르세요.</label>
                         <select class="form-control" name="drinkType" id="drinkType">
-                            <option value="">마신 술의 종류를 고르세요.</option>
                             {{#itemList}}
                             <option value={{id}}>{{itemName}}</option>
                             {{/itemList}}
                         </select>
                     </div>
                     <div class="col-12  col-12-xsmall">
-                        <input class="form-control" type="text" name="cup" id="cup" value="" placeholder="몇 잔 마셨나요? 숫자로만 입력해주세요." required/>
+                        <label for="cup">몇 잔 마셨나요?</label>
+                        <input class="form-control" type="text" name="cup" id="cup" value="" placeholder="숫자로만 입력해주세요." required/>
                     </div>
                     <div class="col-12 col-12-xsmall">
-                        <input class="form-control" type="text" id="film" name="film" placeholder="필름이 끊겼나요? 끊겼다면 Y, 끊기지 않았다면 N">
+                        <label for="film">필름이 끊겼나요?</label>
+                        <select class="form-control" name="film" id="film">
+                            <option value="N">아니오, 필름 끊기지 않았습니다.</option>
+                            <option value="Y">네, 필름 끊겼습니다.</option>
+                        </select>
                     </div>
                     <div class="col-12">
-                        <textarea class="form-control" name="memo" id="memo" placeholder="특이사항 적기" rows="3"></textarea>
+                        <label for="memo">특이사항 적기</label>
+                        <textarea class="form-control" name="memo" id="memo" rows="3"></textarea>
                     </div>
                     <div class="col-12">
                         <ul class="actions">

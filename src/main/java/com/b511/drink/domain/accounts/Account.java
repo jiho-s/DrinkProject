@@ -26,7 +26,7 @@ public class Account extends BaseEntity {
     @NotEmpty
     private String email;
 
-    @NotEmpty
+    // @NotEmpty
     private String picture;
 
     @Embedded

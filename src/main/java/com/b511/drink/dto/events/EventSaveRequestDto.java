@@ -34,7 +34,19 @@ public class EventSaveRequestDto {
     }
 
     public Event toEntity(Account account) {
-        return Event.builder().account(this.account).alcoholByVolume(123.7).name(memo).build();
+        // drinkType : 0 - Wine - 12%, glass : 150ml,   alc per glass : 18ml
+        // drinkType : 1 - Soju - 18%, glass : 60ml,    alc per glass : 10.8ml
+        // drinkType : 2 - Beer - 4%, glass : 500ml,    alc per glass : 20ml
+
+        Double alcohol = null;
+        if(drinkType == 0)
+            alcohol = Double.valueOf(this.cup * 18);
+        else if(drinkType == 1)
+            alcohol = this.cup * 10.8;
+        else if(drinkType == 2)
+            alcohol = Double.valueOf(this.cup * 20);
+
+        return Event.builder().account(this.account).alcoholByVolume(alcohol).drinkDate(drinkDate).name(memo).build();
     }
 
     @Override
@@ -47,4 +59,5 @@ public class EventSaveRequestDto {
                 .add("memo='" + memo + "'")
                 .toString();
     }
+
 }

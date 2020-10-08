@@ -31,13 +31,10 @@ public class EventController {
     }
 
     @PostMapping("/service/event/put")
-    public UUID save(@RequestBody EventSaveRequestDto requestDto){
-        System.out.println("--------------------------");
-        System.out.println(requestDto.toString());
-        System.out.println("--------------------------");
+    public UUID save(@RequestBody EventSaveRequestDto requestDto) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user == null){
-            System.out.println("im null");
+            throw new IllegalArgumentException("잘못된 접근입니다. (인증받지 못한 유저로부터의 접근)");
         }
         return eventService.save(requestDto, user);
     }

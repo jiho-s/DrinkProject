@@ -41,9 +41,11 @@ public class Event extends BaseEntity {
     @Builder
     public Event(@NotEmpty Account account,
                  @NotEmpty Double alcoholByVolume,
+                 @NotEmpty LocalDate drinkDate,
                  String name) {
         this.account = account;
         this.alcoholByVolume = alcoholByVolume;
+        this.drinkDate = drinkDate;
         this.name = name;
     }
 

@@ -25,7 +25,7 @@ var index = {
             alert('주량이 정상적으로 등록되었습니다.');
             window.location.href = '/service/main';
         }).fail(function (error) {
-            alert(JSON.stringify(error))
+            alert("잘못된 접근입니다. (인증받지 못한 유저로부터의 접근) \n error message : \n" + JSON.stringify(error, null, 2));
         });
     }
 
