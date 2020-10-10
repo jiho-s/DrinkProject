@@ -2,6 +2,7 @@ package com.b511.drink.domain.events;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.BaseEntity;
+import com.b511.drink.domain.items.Item;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,15 +32,19 @@ public class Event extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate drinkDate;
 
+    @Enumerated(value = EnumType.STRING)
+    private Item item;
+
     @Builder
     public Event(@NotEmpty Account account,
                  @NotEmpty Double alcoholByVolume,
+                 String name,
                  @NotEmpty LocalDate drinkDate,
-                 String name) {
+                 Item item) {
         this.account = account;
         this.alcoholByVolume = alcoholByVolume;
-        this.drinkDate = drinkDate;
         this.name = name;
+        this.drinkDate = drinkDate;
+        this.item = item;
     }
-
 }
