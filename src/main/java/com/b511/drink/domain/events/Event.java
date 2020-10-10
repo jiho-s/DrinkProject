@@ -32,19 +32,15 @@ public class Event extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate drinkDate;
 
-    @Enumerated(value = EnumType.STRING)
-    private Item item;
 
     @Builder
     public Event(@NotEmpty Account account,
                  @NotEmpty Double alcoholByVolume,
                  String name,
-                 @NotEmpty LocalDate drinkDate,
-                 Item item) {
+                 @NotEmpty LocalDate drinkDate) {
         this.account = account;
         this.alcoholByVolume = alcoholByVolume;
         this.name = name;
         this.drinkDate = drinkDate;
-        this.item = item;
     }
 }
