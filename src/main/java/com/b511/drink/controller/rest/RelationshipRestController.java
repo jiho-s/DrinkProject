@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController("/rest/relationship")
+@RestController("/api/relationship")
 public class RelationshipRestController {
 
     RelationshipService relationshipService;
