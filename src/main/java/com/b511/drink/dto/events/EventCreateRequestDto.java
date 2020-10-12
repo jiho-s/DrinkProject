@@ -3,6 +3,7 @@ package com.b511.drink.dto.events;
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.items.Item;
+import com.b511.drink.service.dtos.EventRequestDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class EventCreateRequestDto {
         this.account = account;
     }
 
-    public Event toEntity(Account account) {
+    public EventRequestDto toEventRequestDto(Account account) {
         Double alcohol = null;
 
         for(Item I : Item.values()){
@@ -43,7 +44,7 @@ public class EventCreateRequestDto {
             }
         }
 
-        return Event.builder().account(this.account).alcoholByVolume(alcohol).drinkDate(drinkDate).name(memo).build();
+        return EventRequestDto.builder().alcoholByVolume(alcohol).drinkDate(drinkDate).name(memo).build();
     }
 
     @Override

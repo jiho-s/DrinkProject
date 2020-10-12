@@ -1,5 +1,6 @@
 package com.b511.drink.service.accounts;
 
+import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.service.dtos.AccountRequestDto;
 import com.b511.drink.service.dtos.AccountResponseDto;

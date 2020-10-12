@@ -1,16 +1,15 @@
 package com.b511.drink.service.dtos;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Builder @Setter
+@Builder
+@Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class AccountResponseDto {
     private UUID id;
 

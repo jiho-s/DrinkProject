@@ -24,6 +24,7 @@ public class MyErrorController implements ErrorController {
         return "error";
     }
 
+    @Deprecated
     @Override
     public String getErrorPath() {
         return null;
