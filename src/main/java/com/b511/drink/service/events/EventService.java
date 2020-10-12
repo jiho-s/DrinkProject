@@ -22,22 +22,38 @@ public class EventService {
     }
 
     public Event createEvent(EventRequestDto requestDto, Account account) {
-        return eventRepository.save(Event.builder()
+        Event event = Event.builder()
                 .account(account)
                 .alcoholByVolume(requestDto.getAlcoholByVolume())
                 .drinkDate(requestDto.getDrinkDate())
                 .name(requestDto.getName())
-                .build());
+                .build();
+        account.addAccountEvent(event);
+        return eventRepository.save(event);
     }
 
     public Optional<UUID> deleteEvent(Event event, Account account) {
         // account의 id와 evnet account의 id가 다른경우 empty return
         if (!event.getAccount().getId().equals(account.getId()))
             return Optional.empty();
-
+        account.getEvents().remove(event);
         eventRepository.delete(event);
-
         return Optional.of(event.getId());
+    }
+
+    // 내 이벤트가 아니면 조회 못함
+    public Optional<Event> getEvent(UUID eventId, Account account) {
+        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+
+        if (optionalEvent.isEmpty())
+            return Optional.empty();
+        Event event = optionalEvent.get();
+
+        if (!event.getAccount().getId().equals(account.getId()))
+//            throw AccessDeniedException();
+            throw new IllegalAccessError("내꺼 아님");
+
+        return Optional.of(event);
     }
 
     // event 수정 귀찮아서 안만듬 수정하고 싶으면 삭제하고 다시 만들라고 해
