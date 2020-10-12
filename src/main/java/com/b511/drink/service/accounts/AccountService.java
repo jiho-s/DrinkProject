@@ -1,6 +1,7 @@
 package com.b511.drink.service.accounts;
 
 import com.b511.drink.domain.accounts.Account;
+import com.b511.drink.domain.accounts.AccountInfo;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.service.dtos.AccountRequestDto;
 import com.b511.drink.service.dtos.AccountResponseDto;
@@ -29,6 +30,23 @@ public class AccountService {
                 .build()
         );
         return Optional.of(account);
+    }
+
+    public AccountInfo editAccountInfo(Account account, AccountInfo accountInfo) {
+        account.setAccountInfo(accountInfo);
+        accountRepository.save(account);
+        return accountInfo;
+    }
+
+    public Account editAccountName(Account account, String name) {
+        account.setName(name);
+        accountRepository.save(account);
+        return account;
+    }
+
+    public Account editAccountPicture(Account account, String pirture) {
+        account.setPicture(pirture);
+        return account;
     }
 
     public UUID deleteAccount(Account account) {
