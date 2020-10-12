@@ -58,6 +58,13 @@ public class EventService {
 
     // event 수정 귀찮아서 안만듬 수정하고 싶으면 삭제하고 다시 만들라고 해
 
+    //한 달동안 술 마신 날 조회
+    public List<LocalDate> queryMyMonthEventDate(Account account, LocalDate endDate) {
+        LocalDate startDate = endDate.withDayOfMonth(1);
+        List<LocalDate> dates = eventRepository.findByDrinkDateBetweenAndAccount(startDate, endDate, account).stream().map(event -> event.getDrinkDate()).collect(Collectors.toList());
+        return dates;
+    }
+
     //n내 과거 일주일 기록 조회
     public List<Map<LocalDate, Double>> queryMyWeek(Account account, LocalDate endDate) {
         LocalDate startDate = endDate.minusDays(6);
@@ -70,6 +77,7 @@ public class EventService {
             return Map.of(day, alcohol);
         }).collect(Collectors.toList());
     }
+
 
     //과거 1년 기록 조회
     public  List<Map<Integer, Double>> queryMyYear(Account account, LocalDate endDate) {
