@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface EventRepository extends JpaRepository<Event, UUID> {
     List<Event> findByDrinkDateBetweenAndAccount(LocalDate startDate, LocalDate endDate, Account account);
+    List<Event> findByDrinkDateAndAccount(LocalDate drinkDate, Account account);
 }

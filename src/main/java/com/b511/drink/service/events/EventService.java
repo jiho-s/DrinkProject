@@ -24,16 +24,26 @@ public class EventService {
     }
 
     public Event createEvent(EventRequestDto requestDto, Account account) {
+
+        Double pastAlcohol = 0.0;
+        List<Event> event = eventRepository.findByDrinkDateAndAccount(requestDto.getDrinkDate(), account);
+
+        // if event is exist, delete & make new one
+        if(event.size() == 1) {
+            pastAlcohol = event.get(0).getAlcoholByVolume();
+            deleteEvent(event.get(0), account);
+        }
+
         return eventRepository.save(Event.builder()
                 .account(account)
-                .alcoholByVolume(requestDto.getAlcoholByVolume())
+                .alcoholByVolume(pastAlcohol + requestDto.getAlcoholByVolume())
                 .drinkDate(requestDto.getDrinkDate())
                 .name(requestDto.getName())
                 .build());
     }
 
     public Optional<UUID> deleteEvent(Event event, Account account) {
-        // account의 id와 evnet account의 id가 다른경우 empty return
+        // account의 id와 event account의 id가 다른경우 empty return
         if (!event.getAccount().getId().equals(account.getId()))
             return Optional.empty();
 
@@ -41,8 +51,6 @@ public class EventService {
 
         return Optional.of(event.getId());
     }
-
-    // event 수정 귀찮아서 안만듬 수정하고 싶으면 삭제하고 다시 만들라고 해
 
     //내 과거 일주일 기록 조회
     public List<Map<LocalDate, Double>> queryMyWeek(Account account, LocalDate endDate) {
