@@ -4,8 +4,8 @@ import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.events.EventRepository;
-import com.b511.drink.dto.accounts.SessionUser;
-import com.b511.drink.dto.events.EventCreateRequestDto;
+import com.b511.drink.service.dtos.SessionUser;
+import com.b511.drink.service.dtos.EventCreateRequestDto;
 import com.b511.drink.service.dtos.EventRequestDto;
 import com.b511.drink.service.events.EventService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor

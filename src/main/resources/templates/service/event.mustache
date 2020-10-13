@@ -10,8 +10,6 @@
         </ul>
     </header>
 
-    <div class="datepicker" id="drinkdate"> </div>
-
     <div id="main">
         <section id="content" class="main">
             <h2>{{name}} 님의 주량 추가하기</h2>
@@ -26,7 +24,7 @@
                         <label for="drinkType">마신 술의 종류를 고르세요.</label>
                         <select class="form-control" name="drinkType" id="drinkType">
                             {{#itemList}}
-                            <option value={{id}}>{{itemName}}</option>
+                            <option value="{{id}}">{{itemName}}</option>
                             {{/itemList}}
                         </select>
                     </div>

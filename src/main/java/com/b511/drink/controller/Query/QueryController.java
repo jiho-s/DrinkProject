@@ -2,7 +2,7 @@ package com.b511.drink.controller.Query;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
-import com.b511.drink.dto.accounts.SessionUser;
+import com.b511.drink.service.dtos.SessionUser;
 import com.b511.drink.service.dtos.QueryMonthDto;
 import com.b511.drink.service.dtos.QueryWeekDto;
 import com.b511.drink.service.dtos.QueryYearDto;
@@ -29,6 +29,7 @@ public class QueryController {
     public String query_main(Model model){
         Account account = getAccount();
         model.addAttribute("name", "glory");
+        // model.addAttribute("name", account.getName());
 
         List<QueryWeekDto> weekList = QueryWeekDto.getWeekList(eventService.queryMyWeek(account, LocalDate.now()));
         model.addAttribute("weekList", weekList);

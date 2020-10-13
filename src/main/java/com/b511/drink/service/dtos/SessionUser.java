@@ -1,4 +1,4 @@
-package com.b511.drink.dto.accounts;
+package com.b511.drink.service.dtos;
 
 import com.b511.drink.domain.accounts.Account;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.b511.drink.dto.events;
+package com.b511.drink.service.dtos;
 
 import com.b511.drink.domain.items.Item;
 import lombok.NoArgsConstructor;

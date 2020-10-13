@@ -1,6 +1,6 @@
 package com.b511.drink.controller.Event;
 
-import com.b511.drink.dto.events.ItemListDto;
+import com.b511.drink.service.dtos.ItemListDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

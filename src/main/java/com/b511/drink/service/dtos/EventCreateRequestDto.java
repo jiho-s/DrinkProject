@@ -1,9 +1,7 @@
-package com.b511.drink.dto.events;
+package com.b511.drink.service.dtos;
 
 import com.b511.drink.domain.accounts.Account;
-import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.items.Item;
-import com.b511.drink.service.dtos.EventRequestDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
