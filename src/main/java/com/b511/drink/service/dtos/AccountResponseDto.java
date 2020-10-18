@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Builder @Setter
+@Setter
 @Getter
 @NoArgsConstructor
 public class AccountResponseDto {
@@ -23,4 +23,14 @@ public class AccountResponseDto {
     private LocalDateTime createdDate;
 
     private LocalDateTime modifiedDate;
+
+    @Builder
+    public AccountResponseDto(UUID id, String name, String email, String picture, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+    }
 }

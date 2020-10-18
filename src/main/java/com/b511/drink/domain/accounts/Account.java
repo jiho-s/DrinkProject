@@ -20,13 +20,14 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 public class Account extends BaseEntity {
-    @NotEmpty
     private String name;
 
     @NotEmpty
     private String email;
 
     private String picture;
+
+    private String password;
 
     @Embedded
     private AccountInfo accountInfo;
@@ -41,9 +42,10 @@ public class Account extends BaseEntity {
     private Set<Event> events;
 
     @Builder
-    public Account(@NotEmpty String name, @NotEmpty String email, String picture, AccountInfo accountInfo) {
+    public Account(@NotEmpty String name, @NotEmpty String email, String password,String picture, AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.picture = picture;
         this.accountInfo = accountInfo;
     }

@@ -20,6 +20,8 @@ public class AccountRequestDto {
     @Email
     private String email;
 
+    private String password;
+
     @NotNull
     private String picture;
 
