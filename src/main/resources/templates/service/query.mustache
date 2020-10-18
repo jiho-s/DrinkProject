@@ -43,31 +43,51 @@
 
         <section id="month" class="main special">
             <header class="major">
-                <h2>지난 일 년 동안 술 섭취량</h2>
+                <h2>지난 1년 동안 술 섭취량</h2>
             </header>
             <ul class="statistics">
-                {{#monthList}}
+                {{#monthList1}}
                     <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
                         {{date}}
                         <br>
-                        <strong>{{alcohol}} L</strong>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
                     </li>
-                {{/monthList}}
+                {{/monthList1}}
+            </ul>
+            <br>
+            <ul class="statistics">
+                {{#monthList2}}
+                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/monthList2}}
             </ul>
         </section>
 
         <section id="year" class="main special">
             <header class="major">
-                <h2>지난 일 년 동안 술 섭취량</h2>
+                <h2>지난 10년 동안 술 섭취량</h2>
             </header>
             <ul class="statistics">
-                {{#yearList}}
+                {{#yearList1}}
                     <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
                         {{date}}
                         <br>
-                        <strong>{{alcohol}} L</strong>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
                     </li>
-                {{/yearList}}
+                {{/yearList1}}
+            </ul>
+            <br>
+            <ul class="statistics">
+                {{#yearList2}}
+                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/yearList2}}
             </ul>
         </section>
     </div>

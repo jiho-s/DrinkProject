@@ -35,10 +35,16 @@ public class QueryController {
         model.addAttribute("weekList", weekList);
 
         List<QueryMonthDto> monthList = QueryMonthDto.getMonthList(eventService.queryMyYear(account, LocalDate.now()));
-        model.addAttribute("monthList", monthList);
+        List<QueryMonthDto> monthList1 = monthList.subList(0, 7);
+        List<QueryMonthDto> monthList2 = monthList.subList(6, monthList.size());
+        model.addAttribute("monthList1", monthList1);
+        model.addAttribute("monthList2", monthList2);
 
         List<QueryYearDto> yearList = QueryYearDto.getYearList(eventService.queryMy10Year(account, LocalDate.now()));
-        model.addAttribute("yearList", yearList);
+        List<QueryYearDto> yearList1 = yearList.subList(0, 6);
+        List<QueryYearDto> yearList2 = yearList.subList(5, yearList.size());
+        model.addAttribute("yearList1", yearList1);
+        model.addAttribute("yearList2", yearList2);
 
         return "service/query";
     }
