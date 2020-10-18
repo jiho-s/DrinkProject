@@ -1,21 +1,28 @@
 package com.b511.drink.service.accounts;
 
 import com.b511.drink.domain.accounts.Account;
+import com.b511.drink.domain.accounts.AccountAdapter;
 import com.b511.drink.domain.accounts.AccountInfo;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.service.dtos.AccountRequestDto;
 import com.b511.drink.service.dtos.AccountResponseDto;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class AccountService {
+public class AccountService implements UserDetailsService {
     private AccountRepository accountRepository;
+    PasswordEncoder passwordEncoder;
 
-    public AccountService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<Account> createAccount(AccountRequestDto accountRequestDto) {
@@ -26,6 +33,7 @@ public class AccountService {
                 .accountInfo(accountRequestDto.getAccountInfo())
                 .email(accountRequestDto.getEmail())
                 .name(accountRequestDto.getName())
+                .password(passwordEncoder.encode(accountRequestDto.getPassword()))
                 .picture(accountRequestDto.getPicture())
                 .build()
         );
@@ -75,4 +83,9 @@ public class AccountService {
                 .modifiedDate(account.getModifiedDate())
                 .build());
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        Account account = accountRepository.findByEmail(s).orElseThrow(() -> new UsernameNotFoundException(s));
+        return new AccountAdapter(account);    }
 }
