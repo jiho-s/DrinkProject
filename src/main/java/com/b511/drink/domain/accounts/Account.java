@@ -30,6 +30,8 @@ public class Account extends BaseEntity {
     // @NotEmpty
     private String picture;
 
+    private String password;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
@@ -50,12 +52,14 @@ public class Account extends BaseEntity {
     public Account(@NotEmpty String name,
                    @NotEmpty String email,
                    String picture,
+                   String password,
                    Role role,
                    AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.role = role;
+        this.password = password;
         this.accountInfo = accountInfo;
     }
 
@@ -78,7 +82,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getFromRelationship(UUID uuid) {
-        for (Relationship relationship : getFromRelationships()) {
+        for (Relationship relationship : getFromRelationships()){
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
@@ -103,7 +107,7 @@ public class Account extends BaseEntity {
     }
 
     public Relationship getToRelationship(UUID uuid) {
-        for (Relationship relationship : getToRelationships()) {
+        for (Relationship relationship : getToRelationships()){
             if (!relationship.isNew()) {
                 if (relationship.getId().equals(uuid)) {
                     return relationship;
