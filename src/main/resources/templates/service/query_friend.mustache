@@ -1,0 +1,113 @@
+{{>layout/header}}
+
+<div id="wrapper">
+    <header id="header" class="alt">
+        <h1>우주라이크</h1>
+        <p>{{username}} 님, 환영합니다.</p>
+        <ul class="actions fit">
+            <li><a class="button" onclick="history.go(-1)">뒤로 돌아가기</a></li>
+            <li><a href="/" class="button" onclick="alert('준비중입니다.')">로그아웃</a></li>
+        </ul>
+    </header>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="#week" class="active">지난 일주일</a></li>
+            <li><a href="#month">지난 1년</a></li>
+            <li><a href="#year">지난 10년</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <h2>{{friendName}}님의 알코올 섭취량</h2>
+        <section id="week" class="main special">
+            <!--<div class="spotlight">-->
+            <!--<div class="content">-->
+            <header class="major">
+                <h2>지난 일주일 동안 술 섭취량</h2>
+            </header>
+            <!-- 많이 마신 날은 style1, 적당히 마신 날은 style2, 안마신 날은 style4 -->
+            <ul class="statistics">
+                {{#weekList}}
+                    <li class="{{#week_color_query}}{{alcohol}}{{/week_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{alcohol}} ml</strong>
+                    </li>
+                {{/weekList}}
+            </ul>
+            <!--</div>-->
+            <!--</div>-->
+        </section>
+
+        <section id="month" class="main special">
+            <header class="major">
+                <h2>지난 1년 동안 술 섭취량</h2>
+            </header>
+            <ul class="statistics">
+                {{#monthList1}}
+                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/monthList1}}
+            </ul>
+            <br>
+            <ul class="statistics">
+                {{#monthList2}}
+                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/monthList2}}
+            </ul>
+        </section>
+
+        <section id="year" class="main special">
+            <header class="major">
+                <h2>지난 10년 동안 술 섭취량</h2>
+            </header>
+            <ul class="statistics">
+                {{#yearList1}}
+                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/yearList1}}
+            </ul>
+            <br>
+            <ul class="statistics">
+                {{#yearList2}}
+                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                        {{date}}
+                        <br>
+                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                    </li>
+                {{/yearList2}}
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <section>
+            <h2>우주라이크</h2>
+        </section>
+        <section>
+            <h2>팀 B511</h2>
+            <dl class="alt">
+                <dt>Email1</dt>
+                <dd><a href="#">click_syk@naver.com</a></dd>
+                <dt>Email2</dt>
+                <dd><a href="#">tlswlgh120@naver.com</a></dd>
+            </dl>
+        </section>
+    </footer>
+</div>
+
+{{>layout/footer}}
