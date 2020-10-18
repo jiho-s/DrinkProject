@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.anonymous()
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .and()
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/**").anonymous()
