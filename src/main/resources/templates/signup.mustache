@@ -26,8 +26,8 @@
             <form>
                 <div class="row gtr-uniform">
                     <div class="col-12">
-                        <label for="id">아이디</label>
-                        <input class="form-control" type="text" name="id" id="id" required/>
+                        <label for="name">아이디</label>
+                        <input class="form-control" type="text" name="name" id="name" required/>
                     </div>
                     <div class="col-12">
                         <label for="password">비밀번호</label>
@@ -38,14 +38,14 @@
                         <input class="form-control" type="email" name="email" id="email" placeholder="이메일 형태로 입력해주세요" required/>
                     </div>
                     <div class="col-12">
-                        <label for="birthdate">생년월일</label>
-                        <input class="form-control" type="text" name="birthdate" id="birthdate" placeholder="형식 : yyyy-DD-mm" required/>
+                        <label for="birthDate">생년월일</label>
+                        <input class="form-control" type="text" name="birthDate" id="birthDate" placeholder="형식 : yyyy-DD-mm" required/>
                     </div>
                     <div class="col-12">
                         <label for="gender">성별</label>
                         <select class="form-control" name="gender" id="gender">
-                            <option value="1">남자</option>
-                            <option value="2">여자</option>
+                            <option value="male">남자</option>
+                            <option value="female">여자</option>
                         </select>
                     </div>
                     <div class="col-12">
@@ -59,7 +59,7 @@
 
                     <div class="col-12">
                         <ul class="actions">
-                            <li><input type="button" value="회원 가입" class="primary" id=" btn-event-save "/></li>
+                            <li><input type="button" value="회원 가입" class="primary" id="btn-signup"/></li>
                             <li><input type="reset" value="입력내용 초기화" /></li>
                         </ul>
                     </div>
@@ -95,7 +95,7 @@
 <script src="/assets/js/breakpoints.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
-<script src="/assets/js/diagnosis.js"></script>
+<script src="/assets/js/event.js"></script>
 
 </body>
 </html>

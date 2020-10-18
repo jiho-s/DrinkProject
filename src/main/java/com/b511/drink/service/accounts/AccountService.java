@@ -32,7 +32,7 @@ public class AccountService implements UserDetailsService {
                 .name(accountRequestDto.getName())
                 .password(passwordEncoder.encode(accountRequestDto.getPassword()))
                 .role(Role.USER)
-                .picture(accountRequestDto.getPicture())
+//                .picture(accountRequestDto.getPicture())
                 .build()
         );
         return Optional.of(account);

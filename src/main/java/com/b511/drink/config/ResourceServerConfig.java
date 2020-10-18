@@ -7,6 +7,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
+import org.springframework.security.web.header.writers.frameoptions.WhiteListedAllowFromStrategy;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableResourceServer
@@ -20,13 +24,23 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.anonymous()
                 .and()
-                .authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                    .authorizeRequests()
+                    .mvcMatchers(HttpMethod.GET, "/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
                 .and()
-                .exceptionHandling()
-                    .accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                    .csrf().ignoringAntMatchers("/h2-console/**")
+                .and()
+                    .headers()
+                        .addHeaderWriter(
+                            new XFrameOptionsHeaderWriter(
+                                new WhiteListedAllowFromStrategy(Arrays.asList("localhost"))
+                            )
+                        )
+                        .frameOptions().sameOrigin()
+                .and()
+                    .exceptionHandling()
+                        .accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 }

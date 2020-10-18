@@ -21,7 +21,7 @@ public class AccountRequestDto {
 
     private String password;
 
-    @NotNull
+//    @NotNull
     private String picture;
 
     @Embedded
