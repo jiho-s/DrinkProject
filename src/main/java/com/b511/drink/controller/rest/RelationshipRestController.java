@@ -8,6 +8,7 @@ import com.b511.drink.service.accounts.AccountService;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
 import com.b511.drink.service.relationships.RelationshipService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController("/api/relationship")
+@RestController
+@RequestMapping(value = "/api/relationship", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RelationshipRestController {
 
     RelationshipService relationshipService;

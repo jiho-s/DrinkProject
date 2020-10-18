@@ -5,6 +5,7 @@ import com.b511.drink.service.accounts.AccountService;
 import com.b511.drink.service.dtos.AccountRequestDto;
 import com.b511.drink.service.dtos.AccountResponseDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,8 @@ import java.net.URI;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController("/api/account")
+@RestController
+@RequestMapping(value = "/api/account", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountRestController {
 
     AccountService accountService;
