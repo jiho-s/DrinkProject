@@ -49,10 +49,17 @@ public class SignupController {
         Optional<Account> accountResult = accountService.createAccount(accountRequestDto);
 
         if(accountResult.isEmpty()){
+            System.out.println("실패");
             throw new IllegalArgumentException("잘못된 접근입니다. (이미 존재하는 이메일)");
         }
         else {
+            System.out.println("성공");
             return accountResult.get().getId();
         }
+    }
+
+    @PostMapping("/signup/signup/new")
+    public String error_page(){
+        return "login";
     }
 }

@@ -44,18 +44,17 @@ var index = {
 
         $.ajax({
             type: 'POST',
-            url: '/signup/new',
+            url: 'http://localhost:8080/signup/new',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function () {
             alert('정상적으로 회원가입 되었습니다.');
-            window.location.href = '/';
-        })
-        //     .fail(function (error) {
-        //     alert("이미 있는 이메일입니다. \n error message : \n" + JSON.stringify(error, null, 2));
-        // })
-        ;
+            window.location.href = '/login';
+        }).fail(function (error) {
+            alert("이미 존재하는 이메일이거나 오류가 발생했습니다. \n error message : \n" + JSON.stringify(error, null, 2));
+            window.location.href = '/login';
+        });
     }
 
 };
