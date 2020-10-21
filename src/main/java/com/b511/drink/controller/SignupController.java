@@ -11,9 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,8 +31,9 @@ public class SignupController {
         return "signup";
     }
 
+    @ResponseBody
     @PostMapping("/signup/new")
-    public UUID signup_new(@RequestBody AccountSignupDto accountSignupDto){
+    public Map<String, String> signup_new(@RequestBody AccountSignupDto accountSignupDto, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("============================");
         System.out.println(accountSignupDto.toString());
         System.out.println("============================");
@@ -48,18 +54,15 @@ public class SignupController {
 
         Optional<Account> accountResult = accountService.createAccount(accountRequestDto);
 
+        Map<String, String> map = new HashMap<String, String>();
+
         if(accountResult.isEmpty()){
-            System.out.println("실패");
-            throw new IllegalArgumentException("잘못된 접근입니다. (이미 존재하는 이메일)");
+            map.put("data", "이미 등록된 이메일입니다.");
+            return map;
         }
         else {
-            System.out.println("성공");
-            return accountResult.get().getId();
+            map.put("data", "계정이 등록 되었습니다. ");
+            return map;
         }
-    }
-
-    @PostMapping("/signup/signup/new")
-    public String error_page(){
-        return "login";
     }
 }
