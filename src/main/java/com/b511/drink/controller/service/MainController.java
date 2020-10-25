@@ -1,4 +1,4 @@
-package com.b511.drink.controller;
+package com.b511.drink.controller.service;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

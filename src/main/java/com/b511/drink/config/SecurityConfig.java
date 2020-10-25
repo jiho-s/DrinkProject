@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
@@ -50,16 +51,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.anonymous()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .and()
-                .authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/**").anonymous()
-                .mvcMatchers(HttpMethod.POST, "/**").anonymous()
-                .anyRequest().authenticated();
-    }
+//        http.anonymous()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                .and()
+//                    .authorizeRequests()
+//                    .mvcMatchers(HttpMethod.GET, "/**").anonymous()
+//                    .mvcMatchers(HttpMethod.POST, "/**").anonymous()
+//                    .anyRequest().authenticated();
 
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                    .antMatchers("/**").permitAll()
+                    .antMatchers(("/service/**")).authenticated()
+                .and()
+                    .exceptionHandling()
+                        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+                .and()
+                    .formLogin()
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/service/main")
+                .and()
+                    .logout()
+                        .logoutSuccessUrl("/")
+        ;
+
+    }
 
 }

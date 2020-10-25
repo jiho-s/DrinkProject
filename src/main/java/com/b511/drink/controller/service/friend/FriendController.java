@@ -1,11 +1,10 @@
-package com.b511.drink.controller.Friend;
+package com.b511.drink.controller.service.friend;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
 import com.b511.drink.service.dtos.SessionUser;
 import com.b511.drink.service.relationships.RelationshipService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

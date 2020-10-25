@@ -1,4 +1,4 @@
-package com.b511.drink.controller.Query;
+package com.b511.drink.controller.service.query;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;

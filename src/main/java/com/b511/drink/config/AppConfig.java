@@ -17,7 +17,6 @@ import java.util.Set;
 @Configuration
 public class AppConfig {
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

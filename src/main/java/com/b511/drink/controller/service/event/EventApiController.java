@@ -1,4 +1,4 @@
-package com.b511.drink.controller.Event;
+package com.b511.drink.controller.service.event;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;

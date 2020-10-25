@@ -6,7 +6,10 @@ var index = {
         });
         $('#btn-signup').on('click', function () {
             _this.signup();
-        })
+        });
+        $('#btn-login').on('click', function () {
+            _this.login();
+        });
     },
     save : function () {
 
@@ -58,8 +61,26 @@ var index = {
                 window.location.href = '/login';
             }
         });
-    }
+    },
+    login : function () {
+        var data = {
+            id: $('#id').val(),
+            password: $('#password').val()
+        };
 
+        $.ajax({
+            type: 'POST',
+            url: '/loginprocess',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert('로그인 성공');
+            window.location.href = '/service/main';
+        }).fail(function (error) {
+            alert("로그인 실패 \n error message : \n" + JSON.stringify(error, null, 2));
+        });
+    }
 };
 
 index.init();
