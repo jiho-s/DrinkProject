@@ -71,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
                 .and()
                     .formLogin()
-                        .loginPage("/login")
+                        .loginPage("/login").permitAll()
                         .defaultSuccessUrl("/service/main")
                 .and()
                     .logout()

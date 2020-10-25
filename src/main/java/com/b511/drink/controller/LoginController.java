@@ -28,7 +28,7 @@ public class LoginController {
     public void authenticate(@RequestParam Map<String, String> map,
                              HttpServletRequest request, HttpServletResponse response) throws Exception {
         Authentication result = new UsernamePasswordAuthenticationToken(
-                map.get("username"), "N/A",
+                map.get("username"), map.get("password"),
                 AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
         SecurityContextHolder.getContext().setAuthentication(result);
         handler.onAuthenticationSuccess(request, response, result);

@@ -1,47 +1,27 @@
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>우주라이크 로그인</title>
-    <link rel="stylesheet" href="/assets/css/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-    <form action="#" class="login-form">
-        <h1>로그인</h1>
-        
-        <div class="txtb">
-            <input type="text">
-            <span data-placeholder="아이디 / ID"></span>
-        </div>
-        
-        <div class="txtb">
-            <input type="password">
-            <span data-placeholder="비밀번호 / Password"></span>
-        </div>
-        
-        <input type="submit" class="logbtn" onclick="alert('준비중입니다.'); " value="로그인">
-        
-        <div class="bottom-text">
-            아직 회원이 아니신가요? <a href="signup" class="join">회원가입</a>
-        </div>
-        
-        <a href="#" class="social-logbtn naver" onclick="alert('준비중입니다.'); ">네이버 아이디로 로그인</a>
-        <a href="#" class="social-logbtn google" onclick="alert('준비중입니다.'); ">구글 아이디로 로그인</a>
-        <a href="#" class="social-logbtn kakao" onclick="alert('준비중입니다.');">카카오 아이디로 로그인</a>
-        
+<div class="container">
+    <form class="form-signin" method="post" action="/login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
-    
-    <script type="text/javascript">
-        $(".txtb input").on("focus",function(){
-            $(this).addClass("focus");
-        });
-        
-        $(".txtb input").on("blur",function(){
-            if($(this).val() == "")
-            $(this).removeClass("focus");
-        });
-    </script>
-</body>
-</html>
+</div>
+</body></html>
