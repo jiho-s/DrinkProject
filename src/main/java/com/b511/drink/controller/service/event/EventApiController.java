@@ -33,9 +33,9 @@ public class EventApiController {
     @PostMapping("/service/event/put")
     public UUID save(@RequestBody EventCreateRequestDto requestDto) {
 
-//        System.out.println("======================================");
-//        System.out.println(requestDto.toString());
-//        System.out.println("======================================");
+        System.out.println("======================================");
+        System.out.println(requestDto.toString());
+        System.out.println("======================================");
 
         Account account = getAccount();
 
@@ -67,15 +67,12 @@ public class EventApiController {
 
 
     private Account getAccount() {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        Account account = (Account) httpSession.getAttribute("user");
 
-        if(user == null){
+        if(account == null){
             throw new IllegalArgumentException("잘못된 접근입니다. (인증받지 못한 유저로부터의 접근)");
         }
 
-        UUID uid = user.getId();
-        Account account = accountRepository.findById(uid)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 계정입니다. id=" + uid));
         return account;
     }
 }

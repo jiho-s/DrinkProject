@@ -30,13 +30,11 @@ public class QueryController {
     private final EventService eventService;
     private final RelationshipService relationshipService;
     private final AccountRepository accountRepository;
-//    private final RelationshipRepository relationshipRepository;
 
     @GetMapping("/service/query")
     public String query_main(Model model){
         Account account = getAccount();
-        model.addAttribute("name", "glory");
-        // model.addAttribute("name", account.getName());
+        model.addAttribute("name", account.getName());
 
         List<QueryWeekDto> weekList = QueryWeekDto.getWeekList(eventService.queryMyWeek(account, LocalDate.now()));
         model.addAttribute("weekList", weekList);
@@ -59,8 +57,7 @@ public class QueryController {
     @GetMapping("/service/query/{id}")
     public String query_friends(Model model, @PathVariable String id){
         Account account = getAccount();
-        model.addAttribute("username", "glory");
-        // model.addAttribute("name", account.getName());
+        model.addAttribute("name", account.getName());
 
         UUID uuid = UUID.fromString(id);
 
@@ -105,15 +102,12 @@ public class QueryController {
     }
 
     private Account getAccount() {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        Account account = (Account) httpSession.getAttribute("user");
 
-        if(user == null){
+        if(account == null){
             throw new IllegalArgumentException("잘못된 접근입니다. (인증받지 못한 유저로부터의 접근)");
         }
 
-        UUID uid = user.getId();
-        Account account = accountRepository.findById(uid)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 계정입니다. id=" + uid));
         return account;
     }
 

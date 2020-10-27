@@ -1,15 +1,17 @@
 package com.b511.drink.domain.events;
 
-import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.BaseEntity;
+import com.b511.drink.domain.accounts.Account;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -19,22 +21,21 @@ import java.time.LocalDate;
 public class Event extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotEmpty
+    @NotNull
     private Account account;
 
-    @NotEmpty
+    @NotNull
     private Double alcoholByVolume;
 
     private String name;
 
-    @NotEmpty
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private LocalDate drinkDate;
 
     @Builder
-    public Event(@NotEmpty Account account,
-                 @NotEmpty Double alcoholByVolume,
-                 @NotEmpty LocalDate drinkDate,
+    public Event(@NotNull Account account,
+                 @NotNull Double alcoholByVolume,
+                 @NotNull LocalDate drinkDate,
                  String name) {
         this.account = account;
         this.alcoholByVolume = alcoholByVolume;

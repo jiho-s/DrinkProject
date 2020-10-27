@@ -30,7 +30,7 @@
             <!-- 많이 마신 날은 style1, 적당히 마신 날은 style2, 안마신 날은 style4 -->
             <ul class="statistics">
                 {{#weekList}}
-                    <li class="{{#week_color_query}}{{alcohol}}{{/week_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{alcohol}} ml</strong>
@@ -47,7 +47,7 @@
             </header>
             <ul class="statistics">
                 {{#monthList1}}
-                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
@@ -57,7 +57,7 @@
             <br>
             <ul class="statistics">
                 {{#monthList2}}
-                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
@@ -72,7 +72,7 @@
             </header>
             <ul class="statistics">
                 {{#yearList1}}
-                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
@@ -82,7 +82,7 @@
             <br>
             <ul class="statistics">
                 {{#yearList2}}
-                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>

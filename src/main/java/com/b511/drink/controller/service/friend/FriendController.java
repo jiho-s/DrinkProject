@@ -25,8 +25,8 @@ public class FriendController {
     @GetMapping("/service/friend")
     public String friend_main(Model model){
         Account account = getAccount();
-        model.addAttribute("username", "glory");
-        // model.addAttribute("name", account.getName());
+
+        model.addAttribute("name", account.getName());
 
         List<RelationshipResponseDto> relationshipResponseDtos = relationshipService.queryAcceptedAccount(account);
 
@@ -36,15 +36,12 @@ public class FriendController {
     }
 
     private Account getAccount() {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        Account account = (Account) httpSession.getAttribute("user");
 
-        if(user == null){
+        if(account == null){
             throw new IllegalArgumentException("잘못된 접근입니다. (인증받지 못한 유저로부터의 접근)");
         }
 
-        UUID uid = user.getId();
-        Account account = accountRepository.findById(uid)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 계정입니다. id=" + uid));
         return account;
     }
 }

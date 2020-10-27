@@ -39,8 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountService)
-                .passwordEncoder(passwordEncoder);
+        auth.userDetailsService(accountService).passwordEncoder(passwordEncoder);
     }
 
     @Override //Security 필터를 적용할지 말지 결정
@@ -69,13 +68,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .exceptionHandling()
                         .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
-                .and()
-                    .formLogin()
-                        .loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/service/main")
-                .and()
-                    .logout()
-                        .logoutSuccessUrl("/")
+//                .and()
+//                    .formLogin()
+//                        .loginPage("/login").permitAll()
+//                        .defaultSuccessUrl("/service/main")
+//                .and()
+//                    .logout()
+//                        .logoutSuccessUrl("/")
         ;
 
     }

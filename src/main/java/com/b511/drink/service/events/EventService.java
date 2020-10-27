@@ -34,10 +34,14 @@ public class EventService {
             deleteEvent(event.get(0), account);
         }
 
+        System.out.println("======================================");
+        System.out.println(requestDto.toString());
+        System.out.println("======================================");
+
         return eventRepository.save(Event.builder()
                 .account(account)
                 .alcoholByVolume(pastAlcohol + requestDto.getAlcoholByVolume())
-                .drinkDate(requestDto.getDrinkDate())
+                .drinkDate(LocalDate.of(requestDto.getDrinkDate().getYear(), requestDto.getDrinkDate().getMonthValue(), requestDto.getDrinkDate().getDayOfMonth()))
                 .name(requestDto.getName())
                 .build());
     }

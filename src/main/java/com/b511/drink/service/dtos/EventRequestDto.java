@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 @Builder
 @NoArgsConstructor
@@ -27,4 +28,13 @@ public class EventRequestDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate drinkDate;
 
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EventRequestDto.class.getSimpleName() + "[", "]")
+                .add("alcoholByVolume=" + alcoholByVolume)
+                .add("name='" + name + "'")
+                .add("drinkDate=" + drinkDate)
+                .toString();
+    }
 }
