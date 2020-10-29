@@ -42,7 +42,7 @@ public class EventCreateRequestDto {
             }
         }
 
-        return EventRequestDto.builder().alcoholByVolume(alcohol).drinkDate(drinkDate).name(memo).build();
+        return EventRequestDto.builder().alcoholByVolume(alcohol * this.cup).drinkDate(drinkDate).name(memo).build();
     }
 
     @Override

@@ -12,13 +12,13 @@ import java.util.Map;
 @NoArgsConstructor
 public class QueryMonthDto {
 
-    private Double alcohol;
+    private String alcohol;
 
     private String date;
 
     private String style;
 
-    public QueryMonthDto(Double alcohol, String date, String style) {
+    public QueryMonthDto(String alcohol, String date, String style) {
         this.alcohol = alcohol;
         this.date = date;
         this.style = style;
@@ -32,18 +32,28 @@ public class QueryMonthDto {
         LocalDate index = LocalDate.now().minusMonths(11).withDayOfMonth(1);
         for(Map<Integer, Double> m : month){
 
-            Double alcohol = m.get(LocalDate.of(index.getYear(), index.getMonthValue(), index.getDayOfMonth())) / 1000.0;
+            Double alcohol = m.get(index.getMonthValue());
+
+
 
             if(alcohol == null || alcohol.equals(0.0)){
-                alcoholList.add(new QueryMonthDto(alcohol, index.format(formatter), "style4"));
-            }
-            else if(alcohol >= 30.0 * 30){
-                alcoholList.add(new QueryMonthDto(alcohol, index.format(formatter), "style1"));
+                alcoholList.add(new QueryMonthDto("0.0", index.format(formatter), "style4"));
             }
             else {
-                alcoholList.add(new QueryMonthDto(alcohol, index.format(formatter), "style2"));
+                Double alcoholToLiter = alcohol / 1000.0;
+                System.out.println("-----month0---------");
+                System.out.println(alcohol);
+                System.out.println(alcoholToLiter);
+                System.out.println(String.format("%.3f", alcoholToLiter));
+                System.out.println("------imcahgne");
+                if(alcoholToLiter >= (30.0 * 30) / 1000.0){
+                    alcoholList.add(new QueryMonthDto(String.format("%.3f", alcoholToLiter), index.format(formatter), "style1"));
+                }
+                else {
+                    alcoholList.add(new QueryMonthDto(String.format("%.3f", alcoholToLiter), index.format(formatter), "style2"));
+                }
             }
-            index.plusMonths(1);
+            index = index.plusMonths(1);
         }
 
         return alcoholList;
