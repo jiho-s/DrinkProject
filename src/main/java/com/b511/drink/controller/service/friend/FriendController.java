@@ -28,9 +28,20 @@ public class FriendController {
 
         model.addAttribute("name", account.getName());
 
-        List<RelationshipResponseDto> relationshipResponseDtos = relationshipService.queryAcceptedAccount(account);
+        List<RelationshipResponseDto> friends = relationshipService.queryAcceptedAccount(account);
 
-        model.addAttribute("myfriends", relationshipResponseDtos);
+        model.addAttribute("friends_num", Integer.toString(friends.size()));
+        model.addAttribute("friends", friends);
+
+        List<RelationshipResponseDto> pendingFriends = relationshipService.queryPendingAccount(account);
+
+        model.addAttribute("pending_num", Integer.toString(pendingFriends.size()));
+        model.addAttribute("pending", pendingFriends);
+
+        List<RelationshipResponseDto> blockedFriends = relationshipService.queryBlockedAccount(account);
+
+        model.addAttribute("blocked_num", Integer.toString(blockedFriends.size()));
+        model.addAttribute("blocked", blockedFriends);
 
         return "service/friend";
     }

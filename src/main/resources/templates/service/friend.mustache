@@ -3,7 +3,7 @@
 <div id="wrapper">
     <header id="header" class="alt">
         <h1>우주라이크</h1>
-        <p>{{username}} 님, 환영합니다.</p>
+        <p>{{name}} 님, 환영합니다.</p>
         <ul class="actions fit">
             <li><a class="button" onclick="history.go(-1)">뒤로 돌아가기</a></li>
             <li><a href="/logout" class="button" >로그아웃</a></li>
@@ -12,69 +12,74 @@
 
     <!-- Main -->
     <div id="main">
-        <section>
+        <section id="content" class="main">
             <h2>친구 목록 조회</h2>
+            <h3>친구 : {{friends_num}}명</h3>
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>이름</th>
                             <th>친구 주량 조회하기</th>
+                            <th>친구 차단하기</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {{#myfriends}}
+                    {{#friends}}
                         <tr>
                             <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
                             <td><a href="/service/query/{{id}}">주량 조회하기</a></td>
+                            <td>친구 차단 버튼 만들기</td>
                         </tr>
-                    {{/myfriends}}
+                    {{/friends}}
                 </table>
             </div>
 
-            <h3>Alternate</h3>
+            <br>
+            <h2>친구 요청 목록 조회</h2>
+            <h3>요청 친구 : {{pending_num}}명</h3>
             <div class="table-wrapper">
-                <table class="alt">
+                <table>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        <th>이름</th>
+                        <th>친구 수락하기</th>
                     </tr>
                     </thead>
                     <tbody>
+                    {{#pending}}
+                        <tr>
+                            <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
+                            <td>
+<!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
+                                친구 수락하는 버튼 만들기
+                            </td>
+                        </tr>
+                    {{/pending}}
+                </table>
+            </div>
+
+            <br>
+            <h2>차단 친구 목록 조회</h2>
+            <h3>차단 친구 : {{blocked_num}}명</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
                     <tr>
-                        <td>Item One</td>
-                        <td>Ante turpis integer aliquet porttitor.</td>
-                        <td>29.99</td>
+                        <th>이름</th>
+                        <th>차단 해제하기</th>
                     </tr>
-                    <tr>
-                        <td>Item Two</td>
-                        <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                        <td>19.99</td>
-                    </tr>
-                    <tr>
-                        <td>Item Three</td>
-                        <td> Morbi faucibus arcu accumsan lorem.</td>
-                        <td>29.99</td>
-                    </tr>
-                    <tr>
-                        <td>Item Four</td>
-                        <td>Vitae integer tempus condimentum.</td>
-                        <td>19.99</td>
-                    </tr>
-                    <tr>
-                        <td>Item Five</td>
-                        <td>Ante turpis integer aliquet porttitor.</td>
-                        <td>29.99</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>100.00</td>
-                    </tr>
-                    </tfoot>
+                    </thead>
+                    <tbody>
+                    {{#blocked}}
+                        <tr>
+                            <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
+                            <td>
+<!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
+                                차단 해제하는 버튼 만들기
+                            </td>
+                        </tr>
+                    {{/blocked}}
                 </table>
             </div>
         </section>

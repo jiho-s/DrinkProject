@@ -34,8 +34,6 @@ public class QueryMonthDto {
 
             Double alcohol = m.get(index.getMonthValue());
 
-
-
             if(alcohol == null || alcohol.equals(0.0)){
                 alcoholList.add(new QueryMonthDto("0.0", index.format(formatter), "style4"));
             }

@@ -81,7 +81,7 @@ public class QueryController {
                     model.addAttribute("weekList", weekList);
 
                     List<QueryMonthDto> monthList = QueryMonthDto.getMonthList(eventService.queryMyYear(friendAccount, LocalDate.now()));
-                    List<QueryMonthDto> monthList1 = monthList.subList(0, 6);
+                    List<QueryMonthDto> monthList1 = monthList.subList(0, 7);
                     List<QueryMonthDto> monthList2 = monthList.subList(6, monthList.size());
                     model.addAttribute("monthList1", monthList1);
                     model.addAttribute("monthList2", monthList2);
