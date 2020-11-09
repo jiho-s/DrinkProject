@@ -22,13 +22,22 @@ public class EventService {
     }
 
     public Event createEvent(EventRequestDto requestDto, Account account) {
-        Event event = Event.builder()
-                .account(account)
-                .alcoholByVolume(requestDto.getAlcoholByVolume())
-                .drinkDate(requestDto.getDrinkDate())
-                .name(requestDto.getName())
-                .build();
-        account.addAccountEvent(event);
+
+        Double pastAlcohol = 0.0;
+        // if event isn't exist make new
+        Event event = eventRepository.findByDrinkDateAndAccount(requestDto.getDrinkDate(), account).orElseGet(() -> Event.builder()
+                .build());
+        // if event is exist, delete & make new one
+
+        event.setAccount(account);
+        event.setAlcoholByVolume(requestDto.getAlcoholByVolume());
+        event.setDrinkDate(requestDto.getDrinkDate());
+        event.setName(requestDto.getName());
+
+        System.out.println("======================================");
+        System.out.println(requestDto.toString());
+        System.out.println("======================================");
+
         return eventRepository.save(event);
     }
 
