@@ -9,14 +9,15 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
 @Configuration
+@EnableJpaAuditing
 public class AppConfig {
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,12 +37,14 @@ public class AppConfig {
             @Override
             public void run(ApplicationArguments args) throws Exception {
                 AccountRequestDto admin = AccountRequestDto.builder()
+                        .name("admin")
                         .email(appProperties.getAdminUsername())
                         .password(appProperties.getAdminPassword())
                         .build();
                 accountService.createAccount(admin);
 
                 AccountRequestDto user = AccountRequestDto.builder()
+                        .name("user")
                         .email(appProperties.getUserUsername())
                         .password(appProperties.getUserPassword())
                         .build();

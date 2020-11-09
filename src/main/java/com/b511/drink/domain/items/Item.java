@@ -25,4 +25,13 @@ public enum Item {
     private final String korean;
     private final Double alcohol;
 
+    public static Item findByIndex(Integer index) {
+        for (Item i : Item.values()) {
+            if (i.getIndex() == index) {
+                return i;
+            }
+        }
+        return  null;
+    }
+
 }

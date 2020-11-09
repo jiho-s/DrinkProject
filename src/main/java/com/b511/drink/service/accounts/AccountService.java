@@ -1,9 +1,6 @@
 package com.b511.drink.service.accounts;
 
-import com.b511.drink.domain.accounts.Account;
-import com.b511.drink.domain.accounts.AccountAdapter;
-import com.b511.drink.domain.accounts.AccountInfo;
-import com.b511.drink.domain.accounts.AccountRepository;
+import com.b511.drink.domain.accounts.*;
 import com.b511.drink.service.dtos.AccountRequestDto;
 import com.b511.drink.service.dtos.AccountResponseDto;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +31,8 @@ public class AccountService implements UserDetailsService {
                 .email(accountRequestDto.getEmail())
                 .name(accountRequestDto.getName())
                 .password(passwordEncoder.encode(accountRequestDto.getPassword()))
-                .picture(accountRequestDto.getPicture())
+                .role(Role.USER)
+//                .picture(accountRequestDto.getPicture())
                 .build()
         );
         return Optional.of(account);

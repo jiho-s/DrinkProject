@@ -1,7 +1,10 @@
 package com.b511.drink.controller.rest;
 
 import com.b511.drink.domain.accounts.Account;
+import com.b511.drink.domain.accounts.CurrentUser;
 import com.b511.drink.domain.events.Event;
+import com.b511.drink.domain.items.Item;
+import com.b511.drink.service.dtos.EventCreateRequestDto;
 import com.b511.drink.service.dtos.EventRequestDto;
 import com.b511.drink.service.events.EventService;
 import org.springframework.http.MediaType;
@@ -27,13 +30,17 @@ public class EventRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createEvent(@RequestBody @Valid EventRequestDto eventRequestDto, Account account, BindingResult bindingResult) {
+    public ResponseEntity<?> createEvent(@RequestBody EventCreateRequestDto eventCreateRequestDto, @CurrentUser Account account, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return ResponseEntity.badRequest().body(bindingResult);
-
+        Item item = Item.findByIndex(eventCreateRequestDto.getDrinkType());
+        EventRequestDto eventRequestDto = EventRequestDto.builder()
+                .alcoholByVolume(item.getAlcohol()*eventCreateRequestDto.getCup())
+                .name(eventCreateRequestDto.getMemo())
+                .drinkDate(eventCreateRequestDto.getDrinkDate())
+                .build();
         Event event = eventService.createEvent(eventRequestDto, account);
-
-        return ResponseEntity.created(URI.create("/api/event/" + event.getId())).body(event);
+        return ResponseEntity.created(URI.create("/api/event/" + event.getId())).body(true);
     }
 
     @DeleteMapping

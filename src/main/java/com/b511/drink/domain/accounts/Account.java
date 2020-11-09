@@ -20,14 +20,21 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 public class Account extends BaseEntity {
+
+    @NotEmpty
     private String name;
 
     @NotEmpty
     private String email;
 
+    // @NotEmpty
     private String picture;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Embedded
     private AccountInfo accountInfo;
@@ -42,12 +49,22 @@ public class Account extends BaseEntity {
     private Set<Event> events;
 
     @Builder
-    public Account(@NotEmpty String name, @NotEmpty String email, String password,String picture, AccountInfo accountInfo) {
+    public Account(@NotEmpty String name,
+                   @NotEmpty String email,
+                   String picture,
+                   String password,
+                   Role role,
+                   AccountInfo accountInfo) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.picture = picture;
+        this.role = role;
+        this.password = password;
         this.accountInfo = accountInfo;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 
     public Set<Relationship> getFromRelationships() {
@@ -130,8 +147,5 @@ public class Account extends BaseEntity {
         }
         return null;
     }
-
-
-
 
 }

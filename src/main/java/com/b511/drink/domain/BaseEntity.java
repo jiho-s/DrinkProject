@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @MappedSuperclass
-public class BaseEntity extends BaseTimeEntity implements Serializable {
+public class BaseEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2")

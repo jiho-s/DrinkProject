@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class AccountRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createAccount(@RequestBody AccountRequestDto accountRequestDto, BindingResult result) {
+    public ResponseEntity<?> createAccount(@RequestBody @Valid AccountRequestDto accountRequestDto, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(result);
 
