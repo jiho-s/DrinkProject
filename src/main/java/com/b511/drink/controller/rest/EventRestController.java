@@ -59,6 +59,12 @@ public class EventRestController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/my/month")
+    public ResponseEntity<List<LocalDate>> getDate(@RequestBody LocalDate endDate, @CurrentUser Account account) {
+        List<LocalDate> localDates = eventService.queryMyMonthEventDate(account, endDate);
+        return ResponseEntity.ok(localDates);
+    }
+
     @GetMapping("/my/week")
     public ResponseEntity<?> getMyWeek(@RequestBody LocalDate date, Account account, BindingResult result) {
         if (result.hasErrors())
