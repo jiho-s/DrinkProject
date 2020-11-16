@@ -25,11 +25,11 @@ public class Relationship extends BaseEntity {
     private Account to;
 
     @Enumerated(value = EnumType.STRING)
-    @NotEmpty
+//    @NotEmpty
     private RelationshipStatus status;
 
     @Builder
-    public Relationship(@NotEmpty Account from, @NotEmpty Account to, @NotEmpty RelationshipStatus status) {
+    public Relationship(@NotEmpty Account from, @NotEmpty Account to, /*@NotEmpty*/ RelationshipStatus status) {
         this.from = from;
         this.to = to;
         this.status = RelationshipStatus.Pending;

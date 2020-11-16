@@ -2,6 +2,7 @@ package com.b511.drink.controller.service.friend;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
+import com.b511.drink.domain.relationships.Relationship;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
 import com.b511.drink.service.dtos.SessionUser;
 import com.b511.drink.service.relationships.RelationshipService;
@@ -9,9 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -44,6 +48,39 @@ public class FriendController {
         model.addAttribute("blocked", blockedFriends);
 
         return "service/friend";
+    }
+
+    @GetMapping("/service/friend_add")
+    public String friend_add(Model model){
+        Account account = getAccount();
+
+        model.addAttribute("name", account.getName());
+        return "service/friend_add";
+    }
+
+    @PostMapping("/service/friend_add")
+    public String friend_add_factory(@RequestParam("friend") String friend){
+        System.out.println(friend);
+
+        Account account = getAccount();
+        Optional<Account> optionalAccount = accountRepository.findByName(friend);
+
+        if(optionalAccount.isEmpty()){
+            System.out.println("없는 아이디");
+            return "redirect:/service/friend_add";
+        }
+        System.out.println("있는 아이디");
+        Optional<Relationship> relationship = relationshipService.createRelationship(account, optionalAccount.get());
+
+        if(relationship.isEmpty()){
+            System.out.println("이미 친구인 관계");
+            return "redirect:/service/friend_add";
+        }
+        else {
+            System.out.println("친구 요청을 보냈습니다.");
+        }
+
+        return "redirect:/service/friend_add";
     }
 
     private Account getAccount() {
