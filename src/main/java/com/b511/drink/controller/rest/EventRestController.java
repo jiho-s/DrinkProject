@@ -7,6 +7,7 @@ import com.b511.drink.domain.items.Item;
 import com.b511.drink.service.dtos.EventCreateRequestDto;
 import com.b511.drink.service.dtos.EventRequestDto;
 import com.b511.drink.service.events.EventService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -59,8 +60,8 @@ public class EventRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/my/month")
-    public ResponseEntity<List<LocalDate>> getDate(@RequestBody LocalDate endDate, @CurrentUser Account account) {
+    @GetMapping("/my/month/{endDate}")
+    public ResponseEntity<List<LocalDate>> getDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate, @CurrentUser Account account) {
         List<LocalDate> localDates = eventService.queryMyMonthEventDate(account, endDate);
         return ResponseEntity.ok(localDates);
     }

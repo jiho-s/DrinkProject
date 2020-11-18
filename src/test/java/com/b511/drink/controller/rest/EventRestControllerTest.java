@@ -1,6 +1,7 @@
 package com.b511.drink.controller.rest;
 
 import com.b511.drink.config.AppProperties;
+import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.events.EventRepository;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDate;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -64,6 +66,25 @@ class EventRestControllerTest {
                 .content(objectMapper.writeValueAsBytes(eventCreateRequestDto))
         )
                 .andExpect(status().isCreated())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("이벤트 날짜 조회 테스트")
+    public void getDate_Success() throws Exception {
+        Account account = accountRepository.findByEmail("admin@email.com").get();
+        eventRepository.save(Event.builder()
+                .alcoholByVolume(10.0)
+                .account(account)
+                .drinkDate(LocalDate.now().minusDays(5))
+                .name("test")
+                .build());
+
+        mockMvc.perform(get("/api/event/my/month/{date}", "2020-11-24")
+                .header(HttpHeaders.AUTHORIZATION, gerBearerToken())
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk())
                 .andDo(print());
     }
 
