@@ -43,7 +43,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("password", "refresh_token") //refresh_token을 이용해 새로운 토큰 발급가능
                 .scopes("read", "write")
                 .secret(this.passwordEncoder.encode(appProperties.getClientSecret()))
-                .accessTokenValiditySeconds(10 * 60)
+                .accessTokenValiditySeconds(10 * 60 * 100000)
                 .refreshTokenValiditySeconds(6 * 10 * 60);
     }
 
