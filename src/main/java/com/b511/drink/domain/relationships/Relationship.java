@@ -17,11 +17,11 @@ import javax.validation.constraints.NotEmpty;
 public class Relationship extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotEmpty
+    // @NotEmpty
     private Account from;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotEmpty
+   // @NotEmpty
     private Account to;
 
     @Enumerated(value = EnumType.STRING)
@@ -29,7 +29,7 @@ public class Relationship extends BaseEntity {
     private RelationshipStatus status;
 
     @Builder
-    public Relationship(@NotEmpty Account from, @NotEmpty Account to, /*@NotEmpty*/ RelationshipStatus status) {
+    public Relationship(Account from, Account to, /*@NotEmpty*/ RelationshipStatus status) {
         this.from = from;
         this.to = to;
         this.status = RelationshipStatus.Pending;

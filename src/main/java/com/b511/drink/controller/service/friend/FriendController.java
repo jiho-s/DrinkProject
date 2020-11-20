@@ -39,6 +39,9 @@ public class FriendController {
 
         List<RelationshipResponseDto> pendingFriends = relationshipService.queryPendingAccount(account);
 
+        if(pendingFriends.size() >= 1)
+            System.out.println(pendingFriends.get(0).getAccount().getName());
+
         model.addAttribute("pending_num", Integer.toString(pendingFriends.size()));
         model.addAttribute("pending", pendingFriends);
 

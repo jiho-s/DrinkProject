@@ -32,7 +32,7 @@ public class RelationshipService {
                     .id(to.getId())
                     .modifiedDate(to.getModifiedDate())
                     .name(to.getName())
-                    .picture(to.getPicture())
+                    // .picture(to.getPicture())
                     .build();
             return RelationshipResponseDto.builder()
                     .id(relationship.getId())
@@ -48,7 +48,7 @@ public class RelationshipService {
                     .id(from.getId())
                     .modifiedDate(from.getModifiedDate())
                     .name(from.getName())
-                    .picture(from.getPicture())
+                    // .picture(from.getPicture())
                     .build();
             return RelationshipResponseDto.builder()
                     .id(relationship.getId())
@@ -67,7 +67,7 @@ public class RelationshipService {
             Account from = relationship.getFrom();
             AccountSimpleDto accountSimpleDto = AccountSimpleDto.builder()
                     .id(from.getId())
-                    .picture(from.getPicture())
+                    // .picture(from.getPicture())
                     .name(from.getName())
                     .build();
             return RelationshipResponseDto.builder()
@@ -85,7 +85,7 @@ public class RelationshipService {
             AccountSimpleDto accountSimpleDto = AccountSimpleDto.builder()
                     .id(to.getId())
                     .name(to.getName())
-                    .picture(to.getPicture())
+                    // .picture(to.getPicture())
                     .build();
             return RelationshipResponseDto.builder()
                     .id(relationship.getId())

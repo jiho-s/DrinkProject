@@ -15,11 +15,14 @@ public class RelationshipResponseDto {
     private LocalDateTime createdDate;
     private Boolean isMine;
 
+    private String name;
+
     @Builder
     public RelationshipResponseDto(UUID id, AccountSimpleDto account, LocalDateTime createdDate, Boolean isMine) {
         this.id = id;
         this.account = account;
         this.createdDate = createdDate;
         this.isMine = isMine;
+        this.name = account.getName();
     }
 }

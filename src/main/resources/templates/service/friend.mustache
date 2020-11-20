@@ -35,7 +35,7 @@
                     <tbody>
                     {{#friends}}
                         <tr>
-                            <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
+                            <td>{{name}}</td>
                             <td><a href="/service/query/{{id}}">주량 조회하기</a></td>
                             <td>친구 차단 버튼 만들기</td>
                         </tr>
@@ -57,7 +57,7 @@
                     <tbody>
                     {{#pending}}
                         <tr>
-                            <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
+                            <td>{{name}}</td>
                             <td>
 <!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
                                 친구 수락하는 버튼 만들기
@@ -81,7 +81,7 @@
                     <tbody>
                     {{#blocked}}
                         <tr>
-                            <td>{{#AccountSimpleDto}}{{name}}{{/AccountSimpleDto}}</td>
+                            <td>{{name}}</td>
                             <td>
 <!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
                                 차단 해제하는 버튼 만들기
