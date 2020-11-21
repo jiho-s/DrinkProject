@@ -3,6 +3,8 @@ package com.b511.drink.controller.service.friend;
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.relationships.Relationship;
+import com.b511.drink.domain.relationships.RelationshipRepository;
+import com.b511.drink.domain.relationships.RelationshipStatus;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
 import com.b511.drink.service.dtos.SessionUser;
 import com.b511.drink.service.relationships.RelationshipService;
@@ -10,10 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +31,7 @@ public class FriendController {
     private final HttpSession httpSession;
     private final RelationshipService relationshipService;
     private final AccountRepository accountRepository;
+    private final RelationshipRepository relationshipRepository;
 
     @GetMapping("/service/friend")
     public String friend_main(Model model){
@@ -84,6 +91,23 @@ public class FriendController {
         }
 
         return "redirect:/service/friend_add";
+    }
+
+    @GetMapping("/service/friend/pending/{id}")
+    public void accept_friend(@PathVariable String id, HttpServletResponse response) throws IOException {
+        Account account = getAccount();
+
+        Optional<Relationship> optional = relationshipService.editRelationshipStatus(UUID.fromString(id), RelationshipStatus.Accepted, account);
+
+        if(optional.isEmpty()){
+            System.out.println("삭제된 요청입니다.");
+
+        }
+        else {
+            System.out.println("친구 추가 성공!");
+        }
+
+        response.sendRedirect("/service/friend");
     }
 
     private Account getAccount() {

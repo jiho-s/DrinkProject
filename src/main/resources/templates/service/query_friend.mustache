@@ -3,7 +3,7 @@
 <div id="wrapper">
     <header id="header" class="alt">
         <h1>우주라이크</h1>
-        <p>{{username}} 님, 환영합니다.</p>
+        <p>{{name}} 님, 환영합니다.</p>
         <ul class="actions fit">
             <li><a class="button" onclick="history.go(-1)">뒤로 돌아가기</a></li>
             <li><a href="/logout" class="button">로그아웃</a></li>
@@ -21,7 +21,7 @@
 
     <!-- Main -->
     <div id="main">
-        <h2>{{friendName}}님의 알코올 섭취량</h2>
+        <h2 style="text-align: center">{{friendName}}님의 알코올 섭취량</h2>
         <section id="week" class="main special">
             <!--<div class="spotlight">-->
             <!--<div class="content">-->
@@ -31,7 +31,7 @@
             <!-- 많이 마신 날은 style1, 적당히 마신 날은 style2, 안마신 날은 style4 -->
             <ul class="statistics">
                 {{#weekList}}
-                    <li class="{{#week_color_query}}{{alcohol}}{{/week_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
                         <strong>{{alcohol}} ml</strong>
@@ -48,20 +48,20 @@
             </header>
             <ul class="statistics">
                 {{#monthList1}}
-                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
-                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                        <strong>{{alcohol}} L</strong>
                     </li>
                 {{/monthList1}}
             </ul>
             <br>
             <ul class="statistics">
                 {{#monthList2}}
-                    <li class="{{#month_color_query}}{{alcohol}}{{/month_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
-                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                        <strong>{{alcohol}} L</strong>
                     </li>
                 {{/monthList2}}
             </ul>
@@ -73,20 +73,20 @@
             </header>
             <ul class="statistics">
                 {{#yearList1}}
-                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
-                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                        <strong>{{alcohol}} L</strong>
                     </li>
                 {{/yearList1}}
             </ul>
             <br>
             <ul class="statistics">
                 {{#yearList2}}
-                    <li class="{{#year_color_query}}{{alcohol}}{{/year_color_query}}">
+                    <li class="{{style}}">
                         {{date}}
                         <br>
-                        <strong>{{#milliliter_to_liter}}{{alcohol}}{{/milliliter_to_liter}} L</strong>
+                        <strong>{{alcohol}} L</strong>
                     </li>
                 {{/yearList2}}
             </ul>

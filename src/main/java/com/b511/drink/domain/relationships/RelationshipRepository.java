@@ -18,4 +18,5 @@ public interface RelationshipRepository extends JpaRepository<Relationship, UUID
     List<Relationship> findByToAndStatus(Account account, RelationshipStatus relationshipStatus);
 
     boolean existsByFromAndTo(Account from, Account to);
+
 }

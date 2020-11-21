@@ -36,7 +36,7 @@
                     {{#friends}}
                         <tr>
                             <td>{{name}}</td>
-                            <td><a href="/service/query/{{id}}">주량 조회하기</a></td>
+                            <td><a href="/service/query/{{name}}">주량 조회하기</a></td>
                             <td>친구 차단 버튼 만들기</td>
                         </tr>
                     {{/friends}}
@@ -59,8 +59,7 @@
                         <tr>
                             <td>{{name}}</td>
                             <td>
-<!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
-                                친구 수락하는 버튼 만들기
+                                <a href="/service/friend/pending/{{id}}">친구 수락하기</a>
                             </td>
                         </tr>
                     {{/pending}}
