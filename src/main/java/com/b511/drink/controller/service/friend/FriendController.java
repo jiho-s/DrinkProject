@@ -5,24 +5,25 @@ import com.b511.drink.domain.accounts.AccountRepository;
 import com.b511.drink.domain.relationships.Relationship;
 import com.b511.drink.domain.relationships.RelationshipRepository;
 import com.b511.drink.domain.relationships.RelationshipStatus;
+import com.b511.drink.service.dtos.FriendRankingDto;
+import com.b511.drink.service.dtos.MyComparator;
+import com.b511.drink.service.dtos.QueryMonthDto;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
-import com.b511.drink.service.dtos.SessionUser;
+import com.b511.drink.service.events.EventService;
 import com.b511.drink.service.relationships.RelationshipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class FriendController {
     private final RelationshipService relationshipService;
     private final AccountRepository accountRepository;
     private final RelationshipRepository relationshipRepository;
+    private final EventService eventService;
 
     @GetMapping("/service/friend")
     public String friend_main(Model model){
@@ -84,6 +86,21 @@ public class FriendController {
 
         if(relationship.isEmpty()){
             System.out.println("이미 친구인 관계");
+            List<Relationship> fromAndTo = relationshipRepository.findByFromAndTo(account, optionalAccount.get());
+            List<Relationship> toAndFrom = relationshipRepository.findByFromAndTo(optionalAccount.get(), account);
+
+            Relationship r;
+            if(fromAndTo.isEmpty()) r = toAndFrom.get(0);
+            else                    r = fromAndTo.get(0);
+
+            if(r.getStatus().equals(RelationshipStatus.Blocked)){
+                System.out.println("차단된 계정");
+            }
+            else {
+                relationshipService.editRelationshipStatus(r.getId(), RelationshipStatus.Pending, account);
+                System.out.println("상태 변경");
+            }
+
             return "redirect:/service/friend_add";
         }
         else {
@@ -93,21 +110,40 @@ public class FriendController {
         return "redirect:/service/friend_add";
     }
 
-    @GetMapping("/service/friend/pending/{id}")
-    public void accept_friend(@PathVariable String id, HttpServletResponse response) throws IOException {
+    @GetMapping("/service/friend_ranking")
+    public String friend_ranking(Model model) {
         Account account = getAccount();
+        model.addAttribute("username", account.getName());
 
-        Optional<Relationship> optional = relationshipService.editRelationshipStatus(UUID.fromString(id), RelationshipStatus.Accepted, account);
+        List<RelationshipResponseDto> friends = relationshipService.queryAcceptedAccount(account);
+        List<FriendRankingDto> ranking = new ArrayList<>();
 
-        if(optional.isEmpty()){
-            System.out.println("삭제된 요청입니다.");
+        List<QueryMonthDto> acc_monthList = QueryMonthDto.getMonthList(eventService.queryMyYear(account, LocalDate.now()));
+        String acc_alcohol = acc_monthList.get(acc_monthList.size() - 1).getAlcohol();
+        ranking.add(FriendRankingDto.builder().name(account.getName()).rank(0).alcohol(acc_alcohol).build());
 
+        for(RelationshipResponseDto r : friends){
+            String friend_name = r.getAccount().getName();
+            Optional<Account> byName = accountRepository.findByName(friend_name);
+            if(byName.isEmpty())    continue;
+
+            Account friend = byName.get();
+
+            List<QueryMonthDto> monthList = QueryMonthDto.getMonthList(eventService.queryMyYear(friend, LocalDate.now()));
+            String alcohol = monthList.get(monthList.size() - 1).getAlcohol();
+
+            ranking.add(FriendRankingDto.builder().name(friend_name).alcohol(alcohol).rank(0).build());
         }
-        else {
-            System.out.println("친구 추가 성공!");
+
+        MyComparator comp = new MyComparator();
+        Collections.sort(ranking, comp);
+
+        for(int i = 0; i < ranking.size(); i++){
+            ranking.get(i).setRank(i + 1);
         }
 
-        response.sendRedirect("/service/friend");
+        model.addAttribute("ranking", ranking);
+        return "service/friend_ranking";
     }
 
     private Account getAccount() {

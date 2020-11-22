@@ -17,6 +17,9 @@ public interface RelationshipRepository extends JpaRepository<Relationship, UUID
     @EntityGraph(attributePaths = {"from", "to"})
     List<Relationship> findByToAndStatus(Account account, RelationshipStatus relationshipStatus);
 
+    @EntityGraph(attributePaths = {"from", "to"})
+    List<Relationship> findByFromAndTo(Account from, Account to);
+
     boolean existsByFromAndTo(Account from, Account to);
 
 }

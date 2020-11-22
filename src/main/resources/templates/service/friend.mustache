@@ -17,6 +17,7 @@
             <div class="col-6 col-12-medium">
                 <ul class="actions stacked">
                     <li><a href="/service/friend_add" class="button primary fit">친구 추가하기</a></li>
+                    <li><a href="/service/friend_ranking" class="button primary fit">친구 주량 랭킹</a></li>
                 </ul>
                 <br/>
             </div>
@@ -35,9 +36,13 @@
                     <tbody>
                     {{#friends}}
                         <tr>
-                            <td>{{name}}</td>
-                            <td><a href="/service/query/{{name}}">주량 조회하기</a></td>
-                            <td>친구 차단 버튼 만들기</td>
+                            <td style="text-align: center">{{name}}</td>
+                            <td style="text-align: center">
+                                <a href="/service/query/{{name}}">주량 조회하기</a>
+                            </td>
+                            <td style="text-align: center">
+                                <a href="/service/friend/block/{{id}}">친구 차단</a>
+                            </td>
                         </tr>
                     {{/friends}}
                 </table>
@@ -52,14 +57,18 @@
                     <tr>
                         <th>이름</th>
                         <th>친구 수락하기</th>
+                        <th>친구 거절하기</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{#pending}}
                         <tr>
-                            <td>{{name}}</td>
-                            <td>
-                                <a href="/service/friend/pending/{{id}}">친구 수락하기</a>
+                            <td style="text-align: center">{{name}}</td>
+                            <td style="text-align: center">
+                                <a href="/service/friend/pending/{{id}}">친구 수락</a>
+                            </td>
+                            <td style="text-align: center">
+                                <a href="/service/friend/reject/{{id}}">친구 거절</a>
                             </td>
                         </tr>
                     {{/pending}}
@@ -80,10 +89,9 @@
                     <tbody>
                     {{#blocked}}
                         <tr>
-                            <td>{{name}}</td>
-                            <td>
-<!--                                <a href="/service/query/{{id}}">주량 조회하기</a>-->
-                                차단 해제하는 버튼 만들기
+                            <td style="text-align: center">{{name}}</td>
+                            <td style="text-align: center">
+                                <a href="/service/friend/nothing/{{id}}">친구 차단 해제</a>
                             </td>
                         </tr>
                     {{/blocked}}

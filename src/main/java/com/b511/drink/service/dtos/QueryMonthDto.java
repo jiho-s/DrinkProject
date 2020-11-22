@@ -1,5 +1,6 @@
 package com.b511.drink.service.dtos;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 @Setter
+@Getter
 @NoArgsConstructor
 public class QueryMonthDto {
 
@@ -39,11 +41,6 @@ public class QueryMonthDto {
             }
             else {
                 Double alcoholToLiter = alcohol / 1000.0;
-                System.out.println("-----month0---------");
-                System.out.println(alcohol);
-                System.out.println(alcoholToLiter);
-                System.out.println(String.format("%.3f", alcoholToLiter));
-                System.out.println("------imcahgne");
                 if(alcoholToLiter >= (30.0 * 30) / 1000.0){
                     alcoholList.add(new QueryMonthDto(String.format("%.3f", alcoholToLiter), index.format(formatter), "style1"));
                 }
