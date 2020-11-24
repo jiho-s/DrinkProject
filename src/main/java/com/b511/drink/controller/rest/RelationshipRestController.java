@@ -2,10 +2,15 @@ package com.b511.drink.controller.rest;
 
 import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.accounts.AccountRepository;
+import com.b511.drink.domain.accounts.CurrentUser;
 import com.b511.drink.domain.relationships.Relationship;
 import com.b511.drink.domain.relationships.RelationshipStatus;
 import com.b511.drink.service.accounts.AccountService;
+import com.b511.drink.service.dtos.AccountSimpleDto;
+import com.b511.drink.service.dtos.NameRequestDto;
 import com.b511.drink.service.dtos.RelationshipResponseDto;
+import com.b511.drink.service.exceptions.AccountNotFoundException;
+import com.b511.drink.service.exceptions.RelationshipConflictException;
 import com.b511.drink.service.relationships.RelationshipService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,16 +40,22 @@ public class RelationshipRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Relationship> createRelationship(@RequestBody UUID uuid, Account from) {
-        Optional<Account> optionalAccount = accountRepository.findById(uuid);
-        if (optionalAccount.isEmpty())
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<RelationshipResponseDto> createRelationship(@RequestBody NameRequestDto nameRequestDto, @CurrentUser Account from) {
+        Account account = accountRepository.findByName(nameRequestDto.getName()).orElseThrow(() -> new AccountNotFoundException(nameRequestDto.getName()));
 
-        Optional<Relationship> optionalRelationship = relationshipService.createRelationship(from, optionalAccount.get());
-        if (optionalRelationship.isEmpty())
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        Relationship relationship = optionalRelationship.get();
-        return ResponseEntity.created(URI.create("/rest/relationship/" + relationship.getId())).body(relationship);
+        Relationship relationship = relationshipService.createRelationship(from, account).orElseThrow(() -> new RelationshipConflictException());
+        return ResponseEntity.created(URI.create("/rest/relationship/" + relationship.getId())).body(RelationshipResponseDto.builder()
+                .account(AccountSimpleDto.builder()
+                        .id(account.getId())
+                        .modifiedDate(account.getModifiedDate())
+                        .name(account.getName())
+                        .picture(account.getPicture())
+                        .build())
+                .createdDate(relationship.getCreatedDate())
+                .id(relationship.getId())
+                .isMine(true)
+                .build()
+        );
     }
 
     @PutMapping("/status/{relationshipStatus}")

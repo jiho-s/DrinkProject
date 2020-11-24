@@ -6,8 +6,11 @@ import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.items.Item;
 import com.b511.drink.service.dtos.EventCreateRequestDto;
 import com.b511.drink.service.dtos.EventRequestDto;
+import com.b511.drink.service.dtos.EventResponseDto;
 import com.b511.drink.service.events.EventService;
+import com.b511.drink.service.exceptions.EventNotFoundException;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -54,10 +57,9 @@ public class EventRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{eventId}")
-    public ResponseEntity<Event> getEvent(@PathVariable UUID eventId) {
-        // TODO 이벤트 조회 서비스 만들기
-        return ResponseEntity.notFound().build();
+    @GetMapping("/{date}")
+    public ResponseEntity<EventResponseDto> getEvent(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, @CurrentUser Account account) {
+        return ResponseEntity.ok(eventService.getEventByLocalDate(date, account));
     }
 
     @GetMapping("/my/month/{endDate}")
@@ -92,5 +94,10 @@ public class EventRestController {
         List<Map<Integer, Double>> list = eventService.queryMy10Year(account, date);
 
         return ResponseEntity.ok(list);
+    }
+
+    @ExceptionHandler(value = EventNotFoundException.class)
+    public ResponseEntity handleEventNotFoundException(EventNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }

@@ -4,10 +4,13 @@ import com.b511.drink.domain.accounts.Account;
 import com.b511.drink.domain.events.Event;
 import com.b511.drink.domain.events.EventRepository;
 import com.b511.drink.service.dtos.EventRequestDto;
+import com.b511.drink.service.dtos.EventResponseDto;
+import com.b511.drink.service.exceptions.EventNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -48,6 +51,17 @@ public class EventService {
         account.getEvents().remove(event);
         eventRepository.delete(event);
         return Optional.of(event.getId());
+    }
+
+    public EventResponseDto getEventByLocalDate(LocalDate localDate, Account account) {
+        return eventRepository.findByDrinkDateAndAccount(localDate, account).map(event -> {
+            return EventResponseDto.builder()
+                    .alcoholByVolume(event.getAlcoholByVolume())
+                    .drinkDate(event.getDrinkDate())
+                    .id(event.getId())
+                    .name(event.getName())
+                    .build();
+        }).orElseThrow(() -> new EventNotFoundException(localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
     }
 
     // 내 이벤트가 아니면 조회 못함
